@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF08ABF22B73E212000DD462 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08ABF12B73E212000DD462 /* UILabel+Extensions.swift */; };
+		EF08ABF42B73E53D000DD462 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08ABF32B73E53D000DD462 /* AppFonts.swift */; };
+		EF17A9DD2B73C82A00E75331 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF5D60B92B73BF900071E424 /* Assets.xcassets */; };
+		EF1B455F2B73D07200AB519B /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF1B455D2B73D07200AB519B /* Poppins-Regular.ttf */; };
+		EF1B45602B73D07200AB519B /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF1B455E2B73D07200AB519B /* Poppins-SemiBold.ttf */; };
+		EF1B45632B73D0C800AB519B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF1B45622B73D0C800AB519B /* Roboto-Regular.ttf */; };
 		EF5D60802B73817B0071E424 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D607F2B73817B0071E424 /* AppDelegate.swift */; };
 		EF5D60822B73817C0071E424 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60812B73817C0071E424 /* SceneDelegate.swift */; };
-		EF5D60892B73817E0071E424 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF5D60882B73817E0071E424 /* Assets.xcassets */; };
 		EF5D608C2B73817E0071E424 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF5D608A2B73817E0071E424 /* LaunchScreen.storyboard */; };
 		EF5D60972B7389260071E424 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = EF5D60962B7389260071E424 /* .swiftlint.yml */; };
 		EF5D60992B73898B0071E424 /* .swiftformat in Resources */ = {isa = PBXBuildFile; fileRef = EF5D60982B73898B0071E424 /* .swiftformat */; };
@@ -23,13 +28,19 @@
 		EF5D60AB2B7399530071E424 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60AA2B7399530071E424 /* SettingsController.swift */; };
 		EF5D60AE2B7399770071E424 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60AD2B7399770071E424 /* HomeController.swift */; };
 		EF5D60B02B73998C0071E424 /* HomeAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60AF2B73998C0071E424 /* HomeAssembly.swift */; };
+		EF5D60B82B73A40F0071E424 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60B72B73A40F0071E424 /* TopView.swift */; };
+		EF5D60BC2B73C2880071E424 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60BB2B73C2880071E424 /* UIView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EF08ABF12B73E212000DD462 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
+		EF08ABF32B73E53D000DD462 /* AppFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFonts.swift; sourceTree = "<group>"; };
+		EF1B455D2B73D07200AB519B /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		EF1B455E2B73D07200AB519B /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		EF1B45622B73D0C800AB519B /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		EF5D607C2B73817B0071E424 /* iWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF5D607F2B73817B0071E424 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF5D60812B73817C0071E424 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EF5D60882B73817E0071E424 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF5D608B2B73817E0071E424 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF5D608D2B73817E0071E424 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF5D60962B7389260071E424 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -44,6 +55,9 @@
 		EF5D60AA2B7399530071E424 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		EF5D60AD2B7399770071E424 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		EF5D60AF2B73998C0071E424 /* HomeAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembly.swift; sourceTree = "<group>"; };
+		EF5D60B72B73A40F0071E424 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
+		EF5D60B92B73BF900071E424 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EF5D60BB2B73C2880071E424 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +71,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EF08ABF52B73E543000DD462 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				EF08ABF32B73E53D000DD462 /* AppFonts.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		EF1B45612B73D07B00AB519B /* CustomFonts */ = {
+			isa = PBXGroup;
+			children = (
+				EF1B455D2B73D07200AB519B /* Poppins-Regular.ttf */,
+				EF1B455E2B73D07200AB519B /* Poppins-SemiBold.ttf */,
+				EF1B45622B73D0C800AB519B /* Roboto-Regular.ttf */,
+			);
+			path = CustomFonts;
+			sourceTree = "<group>";
+		};
 		EF5D60732B73817B0071E424 = {
 			isa = PBXGroup;
 			children = (
@@ -76,8 +108,10 @@
 		EF5D607E2B73817B0071E424 /* iWeather */ = {
 			isa = PBXGroup;
 			children = (
-				EF5D60B32B739D130071E424 /* Root */,
 				EF5D60B22B739CFB0071E424 /* Modules */,
+				EF08ABF52B73E543000DD462 /* Helpers */,
+				EF5D60BD2B73C29B0071E424 /* Extensions */,
+				EF5D60B32B739D130071E424 /* Root */,
 				EF5D60B42B739D2E0071E424 /* Supporting Files */,
 				EF5D60962B7389260071E424 /* .swiftlint.yml */,
 				EF5D60982B73898B0071E424 /* .swiftformat */,
@@ -117,6 +151,7 @@
 			children = (
 				EF5D60AF2B73998C0071E424 /* HomeAssembly.swift */,
 				EF5D60AD2B7399770071E424 /* HomeController.swift */,
+				EF5D60B72B73A40F0071E424 /* TopView.swift */,
 			);
 			path = HomeModule;
 			sourceTree = "<group>";
@@ -145,12 +180,22 @@
 		EF5D60B42B739D2E0071E424 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				EF5D60882B73817E0071E424 /* Assets.xcassets */,
+				EF1B45612B73D07B00AB519B /* CustomFonts */,
 				EF5D609A2B738C3D0071E424 /* Colors.xcassets */,
+				EF5D60B92B73BF900071E424 /* Assets.xcassets */,
 				EF5D608A2B73817E0071E424 /* LaunchScreen.storyboard */,
 				EF5D608D2B73817E0071E424 /* Info.plist */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EF5D60BD2B73C29B0071E424 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EF5D60BB2B73C2880071E424 /* UIView+Extensions.swift */,
+				EF08ABF12B73E212000DD462 /* UILabel+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,10 +258,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF5D609B2B738C3D0071E424 /* Colors.xcassets in Resources */,
+				EF1B45602B73D07200AB519B /* Poppins-SemiBold.ttf in Resources */,
+				EF1B45632B73D0C800AB519B /* Roboto-Regular.ttf in Resources */,
 				EF5D60992B73898B0071E424 /* .swiftformat in Resources */,
 				EF5D60972B7389260071E424 /* .swiftlint.yml in Resources */,
+				EF1B455F2B73D07200AB519B /* Poppins-Regular.ttf in Resources */,
 				EF5D608C2B73817E0071E424 /* LaunchScreen.storyboard in Resources */,
-				EF5D60892B73817E0071E424 /* Assets.xcassets in Resources */,
+				EF17A9DD2B73C82A00E75331 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,11 +302,15 @@
 				EF5D60AE2B7399770071E424 /* HomeController.swift in Sources */,
 				EF5D60A42B7399010071E424 /* LocationAssembly.swift in Sources */,
 				EF5D60A12B7397C10071E424 /* SearchController.swift in Sources */,
+				EF5D60BC2B73C2880071E424 /* UIView+Extensions.swift in Sources */,
+				EF08ABF42B73E53D000DD462 /* AppFonts.swift in Sources */,
+				EF08ABF22B73E212000DD462 /* UILabel+Extensions.swift in Sources */,
 				EF5D60B02B73998C0071E424 /* HomeAssembly.swift in Sources */,
 				EF5D609F2B7397A10071E424 /* SearchAssembly.swift in Sources */,
 				EF5D60AB2B7399530071E424 /* SettingsController.swift in Sources */,
 				EF5D60802B73817B0071E424 /* AppDelegate.swift in Sources */,
 				EF5D609D2B7394DE0071E424 /* IWeatherAssembly.swift in Sources */,
+				EF5D60B82B73A40F0071E424 /* TopView.swift in Sources */,
 				EF5D60822B73817C0071E424 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

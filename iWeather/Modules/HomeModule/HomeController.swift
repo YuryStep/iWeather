@@ -12,12 +12,10 @@ final class HomeController: UIViewController {
         static let stabText = "Раздел в разработке"
     }
 
-    private lazy var label: UILabel = {
-        var label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = Constants.stabText
-        label.textColor = .systemGray5
-        return label
+    private lazy var topView: TopView = {
+        let view = TopView(frame: CGRect(), displayData: TopView.displayDataStub)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
 
     override func viewDidLoad() {
@@ -27,10 +25,12 @@ final class HomeController: UIViewController {
 
     private func setupView() {
         view.backgroundColor = .appBackground
-        view.addSubview(label)
+        view.addSubview(topView)
         NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            topView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            topView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            topView.topAnchor.constraint(equalTo: view.topAnchor),
+            topView.heightAnchor.constraint(equalToConstant: view.frame.height * 0.4252)
         ])
     }
 }
