@@ -14,6 +14,7 @@
 		EF5D608C2B73817E0071E424 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF5D608A2B73817E0071E424 /* LaunchScreen.storyboard */; };
 		EF5D60972B7389260071E424 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = EF5D60962B7389260071E424 /* .swiftlint.yml */; };
 		EF5D60992B73898B0071E424 /* .swiftformat in Resources */ = {isa = PBXBuildFile; fileRef = EF5D60982B73898B0071E424 /* .swiftformat */; };
+		EF5D609B2B738C3D0071E424 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF5D609A2B738C3D0071E424 /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		EF5D608D2B73817E0071E424 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF5D60962B7389260071E424 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		EF5D60982B73898B0071E424 /* .swiftformat */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftformat; sourceTree = "<group>"; };
+		EF5D609A2B738C3D0071E424 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				EF5D60812B73817C0071E424 /* SceneDelegate.swift */,
 				EF5D60832B73817C0071E424 /* ViewController.swift */,
 				EF5D60882B73817E0071E424 /* Assets.xcassets */,
+				EF5D609A2B738C3D0071E424 /* Colors.xcassets */,
 				EF5D608A2B73817E0071E424 /* LaunchScreen.storyboard */,
 				EF5D608D2B73817E0071E424 /* Info.plist */,
 				EF5D60962B7389260071E424 /* .swiftlint.yml */,
@@ -129,6 +132,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF5D609B2B738C3D0071E424 /* Colors.xcassets in Resources */,
 				EF5D60992B73898B0071E424 /* .swiftformat in Resources */,
 				EF5D60972B7389260071E424 /* .swiftlint.yml in Resources */,
 				EF5D608C2B73817E0071E424 /* LaunchScreen.storyboard in Resources */,
