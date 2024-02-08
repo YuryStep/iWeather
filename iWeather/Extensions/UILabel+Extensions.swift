@@ -8,7 +8,7 @@
 import UIKit
 
 extension UILabel {
-    convenience init(_ font: AppFont, size: CGFloat,  color: UIColor = .white) {
+    convenience init(_ font: AppFont, size: CGFloat, color: UIColor = .white) {
         self.init()
         translatesAutoresizingMaskIntoConstraints = false
         adjustsFontForContentSizeCategory = true

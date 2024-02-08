@@ -8,7 +8,8 @@
 import Foundation
 
 enum AppFont: String {
-    case poppinsSemiBold = "Poppins-SemiBold"
     case poppinsRegular = "Poppins-Regular"
+    case poppinsMedium = "Poppins-Medium"
+    case poppinsSemiBold = "Poppins-SemiBold"
     case robotoRegular = "Roboto-Regular"
 }

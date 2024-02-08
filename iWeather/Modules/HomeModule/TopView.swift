@@ -18,6 +18,8 @@ final class TopView: UIView {
     }
 
     private enum Constants {
+        static let bottomCornersRadius: CGFloat = 30
+
         static let padding: CGFloat = 25
         static let leftLabelSpacing: CGFloat = 15
         static let rightLabelSpacing: CGFloat = 5
@@ -27,7 +29,7 @@ final class TopView: UIView {
         static let dateAndRangeSize: CGFloat = 12.91
         static let weatherConditionSize: CGFloat = 21.33
         static let swipeLabelSize: CGFloat = 12
-        static let  swipeDownImageSize: CGFloat = 22
+        static let swipeDownImageSize: CGFloat = 22
 
         static let swipeDownImageName = "chevron.down"
         static let swipeLabelText = "Swipe down for details"
@@ -70,12 +72,14 @@ final class TopView: UIView {
     private lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
 
     init(frame: CGRect, displayData: DisplayData) {
         super.init(frame: frame)
+        translatesAutoresizingMaskIntoConstraints = false
+        makeBottomCornersRounded(radius: Constants.bottomCornersRadius)
         updateUI(with: displayData)
         setupSubviews()
     }
@@ -92,6 +96,12 @@ final class TopView: UIView {
         temperatureLabel.text = displayData.currentTemperature
         swipeLabel.text = Constants.swipeLabelText
         weatherCondition.text = displayData.weatherCondition
+    }
+
+    private func makeBottomCornersRounded(radius: CGFloat) {
+        layer.cornerRadius = radius
+        layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        clipsToBounds = true
     }
 
     private func setupSubviews() {
