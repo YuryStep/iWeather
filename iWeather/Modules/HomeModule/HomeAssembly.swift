@@ -19,6 +19,6 @@ enum HomeAssembly {
         let tabImage = UIImage(systemName: Constants.tabImageName)
         homeController.tabBarItem = UITabBarItem(title: Constants.tabIconName, image: tabImage, tag: 0)
 
-        return homeController
+        return homeController.wrappedInNavigationController()
     }
 }

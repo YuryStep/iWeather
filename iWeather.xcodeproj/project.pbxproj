@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EF08ABF22B73E212000DD462 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08ABF12B73E212000DD462 /* UILabel+Extensions.swift */; };
 		EF08ABF42B73E53D000DD462 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08ABF32B73E53D000DD462 /* AppFonts.swift */; };
+		EF08ABF72B749E4F000DD462 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08ABF62B749E4F000DD462 /* UIViewController+Extensions.swift */; };
 		EF17A9DD2B73C82A00E75331 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF5D60B92B73BF900071E424 /* Assets.xcassets */; };
 		EF1B455F2B73D07200AB519B /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF1B455D2B73D07200AB519B /* Poppins-Regular.ttf */; };
 		EF1B45602B73D07200AB519B /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF1B455E2B73D07200AB519B /* Poppins-SemiBold.ttf */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		EF08ABF12B73E212000DD462 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		EF08ABF32B73E53D000DD462 /* AppFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFonts.swift; sourceTree = "<group>"; };
+		EF08ABF62B749E4F000DD462 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		EF1B455D2B73D07200AB519B /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		EF1B455E2B73D07200AB519B /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		EF1B45622B73D0C800AB519B /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 		EF5D60BD2B73C29B0071E424 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				EF08ABF62B749E4F000DD462 /* UIViewController+Extensions.swift */,
 				EF5D60BB2B73C2880071E424 /* UIView+Extensions.swift */,
 				EF08ABF12B73E212000DD462 /* UILabel+Extensions.swift */,
 			);
@@ -309,6 +312,7 @@
 				EF5D609F2B7397A10071E424 /* SearchAssembly.swift in Sources */,
 				EF5D60AB2B7399530071E424 /* SettingsController.swift in Sources */,
 				EF5D60802B73817B0071E424 /* AppDelegate.swift in Sources */,
+				EF08ABF72B749E4F000DD462 /* UIViewController+Extensions.swift in Sources */,
 				EF5D609D2B7394DE0071E424 /* IWeatherAssembly.swift in Sources */,
 				EF5D60B82B73A40F0071E424 /* TopView.swift in Sources */,
 				EF5D60822B73817C0071E424 /* SceneDelegate.swift in Sources */,
