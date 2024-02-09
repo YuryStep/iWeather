@@ -41,16 +41,23 @@ final class HomeViewController: UIViewController, UICollectionViewDelegate {
     }
 
     private var dataSource: DataSource!
-
-    private lazy var profileButton = UIButton(assetsImage: Constants.profileButtonImageName,
-                                              width: Constants.profileButtonWidth,
-                                              height: Constants.profileButtonHeight)
-
-    private lazy var menuButton = UIButton(assetsImage: Constants.menuButtonImageName,
-                                           width: Constants.menuButtonWidth,
-                                           height: Constants.menuButtonHeight)
-
     private lazy var topView = TopView(frame: .zero, displayData: TopView.displayDataStub)
+
+    private lazy var profileButton: UIButton = {
+        let button = UIButton(assetsImage: Constants.profileButtonImageName,
+                              width: Constants.profileButtonWidth,
+                              height: Constants.profileButtonHeight)
+        button.addTarget(self, action: #selector(profileButtonTapped), for: .touchUpInside)
+        return button
+    }()
+
+    private lazy var menuButton: UIButton = {
+        let button = UIButton(assetsImage: Constants.menuButtonImageName,
+                              width: Constants.menuButtonWidth,
+                              height: Constants.menuButtonHeight)
+        button.addTarget(self, action: #selector(menuButtonTapped), for: .touchUpInside)
+        return button
+    }()
 
     private lazy var collectionView: UICollectionView = {
         let layout = createLayout()
@@ -118,12 +125,13 @@ final class HomeViewController: UIViewController, UICollectionViewDelegate {
             }
         }
 
-        let supplementaryRegistration = TimelineHeaderRegistration(elementKind: "title-element-kind") { (_, _, _) in
+        let supplementaryRegistration = TimelineHeaderRegistration(elementKind: "title-element-kind") { _, _, _ in
         }
 
-        dataSource.supplementaryViewProvider = { (_, _, index) in
-            return self.collectionView.dequeueConfiguredReusableSupplementary(
-                using: supplementaryRegistration, for: index)
+        dataSource.supplementaryViewProvider = { _, _, index in
+            self.collectionView.dequeueConfiguredReusableSupplementary(
+                using: supplementaryRegistration, for: index
+            )
         }
     }
 
@@ -179,11 +187,12 @@ final class HomeViewController: UIViewController, UICollectionViewDelegate {
                                                         trailing: Constants.timelineItemPadding)
         // Header
         let titleSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                              heightDimension: .estimated(44))
+                                               heightDimension: .estimated(44))
         let titleSupplementary = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: titleSize,
             elementKind: "title-element-kind",
-            alignment: .topLeading)
+            alignment: .topLeading
+        )
         section.boundarySupplementaryItems = [titleSupplementary]
         return section
     }
@@ -219,10 +228,25 @@ final class HomeViewController: UIViewController, UICollectionViewDelegate {
         return size
     }
 
+    @objc private func profileButtonTapped() {
+        let alertController = UIAlertController(title: "Hello World", message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+
+        present(alertController, animated: true, completion: nil)
+    }
+
+    @objc private func menuButtonTapped() {
+        let greenViewController = UIViewController()
+        greenViewController.view.backgroundColor = .systemGreen
+        navigationController?.pushViewController(greenViewController, animated: true)
+    }
+
     // TODO: Remove If not needed
     private func getStatusBarHeight() -> CGFloat {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-              let statusBarManager = windowScene.statusBarManager else {
+              let statusBarManager = windowScene.statusBarManager
+        else {
             return 0
         }
         return statusBarManager.statusBarFrame.size.height

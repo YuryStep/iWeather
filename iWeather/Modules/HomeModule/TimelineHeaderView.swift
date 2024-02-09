@@ -21,7 +21,9 @@ class TimelineHeaderView: UICollectionReusableView {
         super.init(frame: frame)
         configure()
     }
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError()
     }
 }

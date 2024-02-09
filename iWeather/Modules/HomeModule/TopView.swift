@@ -39,14 +39,14 @@ final class TopView: UIView {
     }
 
     //  TODO: Remove when Networking will be done
-        static var displayDataStub = DisplayData(
-            cityName: "Hyderabad",
-            date: "20 Apr Wed",
-            temperatureRange: "20°C/29°C",
-            currentTemperature: "24°C",
-            weatherCondition: "Clear sky",
-            backgroundImage: UIImage(named: "topImageStub")!
-        )
+    static var displayDataStub = DisplayData(
+        cityName: "Hyderabad",
+        date: "20 Apr Wed",
+        temperatureRange: "20°C/29°C",
+        currentTemperature: "24°C",
+        weatherCondition: "Clear sky",
+        backgroundImage: UIImage(named: "topImageStub")!
+    )
 
     private lazy var cityLabel = UILabel(.poppinsSemiBold, size: Constants.cityNameSize)
     private lazy var temperatureLabel = UILabel(.poppinsSemiBold, size: Constants.temperatureInfoSize)

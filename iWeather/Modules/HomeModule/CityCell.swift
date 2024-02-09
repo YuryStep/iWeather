@@ -12,7 +12,7 @@ final class CityCell: UICollectionViewCell {
         let id = UUID()
         let imageName: String
         let cityName: String = "Jaipur"
-        let currentTemperature: String  = "30°C"
+        let currentTemperature: String = "30°C"
     }
 
     private enum Constants {
