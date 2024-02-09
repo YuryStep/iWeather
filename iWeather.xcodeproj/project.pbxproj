@@ -17,6 +17,8 @@
 		EF08AC012B74BFC5000DD462 /* TimelineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08AC002B74BFC5000DD462 /* TimelineCell.swift */; };
 		EF08AC032B74C82E000DD462 /* TimelineHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08AC022B74C82E000DD462 /* TimelineHeaderView.swift */; };
 		EF08AC052B74DDF4000DD462 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF08AC042B74DDF4000DD462 /* Poppins-Medium.ttf */; };
+		EF08AC072B754737000DD462 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08AC062B754737000DD462 /* MainTabBarController.swift */; };
+		EF08AC0D2B760023000DD462 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08AC0C2B760023000DD462 /* UIImage+Extensions.swift */; };
 		EF17A9DD2B73C82A00E75331 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF5D60B92B73BF900071E424 /* Assets.xcassets */; };
 		EF1B455F2B73D07200AB519B /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF1B455D2B73D07200AB519B /* Poppins-Regular.ttf */; };
 		EF1B45602B73D07200AB519B /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF1B455E2B73D07200AB519B /* Poppins-SemiBold.ttf */; };
@@ -51,6 +53,8 @@
 		EF08AC002B74BFC5000DD462 /* TimelineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineCell.swift; sourceTree = "<group>"; };
 		EF08AC022B74C82E000DD462 /* TimelineHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineHeaderView.swift; sourceTree = "<group>"; };
 		EF08AC042B74DDF4000DD462 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		EF08AC062B754737000DD462 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		EF08AC0C2B760023000DD462 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		EF1B455D2B73D07200AB519B /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		EF1B455E2B73D07200AB519B /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		EF1B45622B73D0C800AB519B /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -193,6 +197,7 @@
 				EF5D607F2B73817B0071E424 /* AppDelegate.swift */,
 				EF5D60812B73817C0071E424 /* SceneDelegate.swift */,
 				EF5D609C2B7394DE0071E424 /* IWeatherAssembly.swift */,
+				EF08AC062B754737000DD462 /* MainTabBarController.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -218,6 +223,7 @@
 				EF08ABF12B73E212000DD462 /* UILabel+Extensions.swift */,
 				EF08ABFA2B74BCE2000DD462 /* UICollectionView+Extensions.swift */,
 				EF08ABFC2B74BD00000DD462 /* UICollectionViewCell+Extensions.swift */,
+				EF08AC0C2B760023000DD462 /* UIImage+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -322,6 +328,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF08AC072B754737000DD462 /* MainTabBarController.swift in Sources */,
 				EF5D60A92B73992B0071E424 /* SettingsAssembly.swift in Sources */,
 				EF08AC032B74C82E000DD462 /* TimelineHeaderView.swift in Sources */,
 				EF5D60A62B73990B0071E424 /* LocationController.swift in Sources */,
@@ -336,6 +343,7 @@
 				EF5D609F2B7397A10071E424 /* SearchAssembly.swift in Sources */,
 				EF08ABFD2B74BD00000DD462 /* UICollectionViewCell+Extensions.swift in Sources */,
 				EF5D60AB2B7399530071E424 /* SettingsController.swift in Sources */,
+				EF08AC0D2B760023000DD462 /* UIImage+Extensions.swift in Sources */,
 				EF08ABF92B74AF40000DD462 /* UIButton+Extensions.swift in Sources */,
 				EF5D60802B73817B0071E424 /* AppDelegate.swift in Sources */,
 				EF08AC012B74BFC5000DD462 /* TimelineCell.swift in Sources */,

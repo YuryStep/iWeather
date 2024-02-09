@@ -16,8 +16,8 @@ enum SettingsAssembly {
     static func makeModule() -> UIViewController {
         let settingsController = SettingsController()
 
-        let tabImage = UIImage(systemName: Constants.tabImageName)
-        settingsController.tabBarItem = UITabBarItem(title: Constants.tabIconName, image: tabImage, tag: 3)
+//        let tabImage = UIImage(systemName: Constants.tabImageName)
+//        settingsController.tabBarItem = UITabBarItem(title: Constants.tabIconName, image: tabImage, tag: 3)
 
         return settingsController
     }

@@ -16,8 +16,8 @@ enum SearchAssembly {
     static func makeModule() -> UIViewController {
         let searchController = SearchController()
 
-        let tabImage = UIImage(systemName: Constants.tabImageName)
-        searchController.tabBarItem = UITabBarItem(title: Constants.tabIconName, image: tabImage, tag: 1)
+//        let tabImage = UIImage(systemName: Constants.tabImageName)
+//        searchController.tabBarItem = UITabBarItem(title: Constants.tabIconName, image: tabImage, tag: 1)
 
         return searchController
     }

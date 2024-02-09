@@ -16,8 +16,8 @@ enum LocationAssembly {
     static func makeModule() -> UIViewController {
         let locationController = LocationController()
 
-        let tabImage = UIImage(systemName: Constants.tabImageName)
-        locationController.tabBarItem = UITabBarItem(title: Constants.tabIconName, image: tabImage, tag: 2)
+//        let tabImage = UIImage(systemName: Constants.tabImageName)
+//        locationController.tabBarItem = UITabBarItem(title: Constants.tabIconName, image: tabImage, tag: 2)
 
         return locationController
     }

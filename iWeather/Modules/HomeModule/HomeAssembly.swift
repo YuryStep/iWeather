@@ -16,8 +16,8 @@ enum HomeAssembly {
     static func makeModule() -> UIViewController {
         let homeController = HomeController()
 
-        let tabImage = UIImage(systemName: Constants.tabImageName)
-        homeController.tabBarItem = UITabBarItem(title: Constants.tabIconName, image: tabImage, tag: 0)
+//        let tabImage = UIImage(systemName: Constants.tabImageName)
+//        homeController.tabBarItem = UITabBarItem(title: Constants.tabIconName, image: tabImage, tag: 0)
 
         return homeController.wrappedInNavigationController()
     }

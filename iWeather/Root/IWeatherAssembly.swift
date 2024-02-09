@@ -14,8 +14,7 @@ enum IWeatherAssembly {
         let location = LocationAssembly.makeModule()
         let settings = SettingsAssembly.makeModule()
 
-        let tabBarController = makeTabBarController(with: [home, search, location, settings])
-        tabBarController.tabBar.tintColor = .appLightBackground
+        let tabBarController = MainTabBarController(homeVC: home, searchVC: search, locationVC: location, settingsVC: settings)
         return tabBarController
     }
 
