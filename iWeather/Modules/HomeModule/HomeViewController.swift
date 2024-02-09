@@ -1,5 +1,5 @@
 //
-//  HomeController.swift
+//  HomeViewController.swift
 //  iWeather
 //
 //  Created by Юрий Степанчук on 07.02.2024.
@@ -7,7 +7,25 @@
 
 import UIKit
 
-final class HomeController: UIViewController, UICollectionViewDelegate {
+final class HomeViewController: UIViewController, UICollectionViewDelegate {
+    private enum Constants {
+        static let profileButtonImageName = "iconPerson"
+        static let profileButtonWidth: CGFloat = 34
+        static let profileButtonHeight: CGFloat = 34
+
+        static let menuButtonImageName = "iconBurger"
+        static let menuButtonWidth: CGFloat = 34
+        static let menuButtonHeight: CGFloat = 18
+
+        static let cityItemPadding: CGFloat = 25
+        static let cityItemSpacing: CGFloat = 25
+        static let cityItemAspectRatio = 0.8
+
+        static let timelineItemPadding: CGFloat = 25
+        static let timelineItemSpacing: CGFloat = 25
+        static let timelineItemAspectRatio = 0.75
+    }
+
     private typealias DataSource = UICollectionViewDiffableDataSource<Section, Item>
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Item>
     private typealias TimelineHeaderRegistration = UICollectionView.SupplementaryRegistration<TimelineHeaderView>
@@ -22,11 +40,17 @@ final class HomeController: UIViewController, UICollectionViewDelegate {
         case timelineItem(TimelineCell.DisplayData)
     }
 
-    private lazy var profileButton = UIButton(systemImage: "person.circle")
-    private lazy var menuButton = UIButton(systemImage: "line.3.horizontal")
-    private lazy var topView = TopView(frame: .zero, displayData: TopView.displayDataStub)
-
     private var dataSource: DataSource!
+
+    private lazy var profileButton = UIButton(assetsImage: Constants.profileButtonImageName,
+                                              width: Constants.profileButtonWidth,
+                                              height: Constants.profileButtonHeight)
+
+    private lazy var menuButton = UIButton(assetsImage: Constants.menuButtonImageName,
+                                           width: Constants.menuButtonWidth,
+                                           height: Constants.menuButtonHeight)
+
+    private lazy var topView = TopView(frame: .zero, displayData: TopView.displayDataStub)
 
     private lazy var collectionView: UICollectionView = {
         let layout = createLayout()
@@ -120,50 +144,40 @@ final class HomeController: UIViewController, UICollectionViewDelegate {
     }
 
     private func createCitiesSectionLayout() -> NSCollectionLayoutSection {
-        let padding: CGFloat = 25
-        let spacing: CGFloat = 25
-        let itemWidth = (view.frame.width - spacing) / 2 - padding
-        let aspectRatio = 0.8
-        let itemHeight = itemWidth / aspectRatio
+        let dynamicSize = getLayoutSizeToFitItems(count: 2,
+                                                  padding: Constants.cityItemPadding,
+                                                  spacing: Constants.cityItemSpacing,
+                                                  aspectRatio: Constants.cityItemAspectRatio)
 
-        let calculatedSize = NSCollectionLayoutSize(
-            widthDimension: .absolute(itemWidth),
-            heightDimension: .absolute(itemHeight)
-        )
-
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                              heightDimension: .fractionalHeight(1.0))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: calculatedSize, subitems: [item])
+        let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize.fitToParent)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: dynamicSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = spacing
-        section.contentInsets = NSDirectionalEdgeInsets(top: 25, leading: padding, bottom: 10, trailing: padding)
+        section.interGroupSpacing = Constants.cityItemSpacing
+        section.contentInsets = NSDirectionalEdgeInsets(top: 25,
+                                                        leading: Constants.cityItemPadding,
+                                                        bottom: 10,
+                                                        trailing: Constants.cityItemPadding)
         section.orthogonalScrollingBehavior = .continuous
         return section
     }
 
     private func createTimelineSectionLayout() -> NSCollectionLayoutSection {
-        let padding: CGFloat = 25
-        let spacing: CGFloat = 25
-        let itemWidth = (view.frame.width - spacing) / 4 - padding
-        let aspectRatio = 0.75
-        let itemHeight = itemWidth / aspectRatio
+        let dynamicSize = getLayoutSizeToFitItems(count: 4,
+                                                  padding: Constants.timelineItemPadding,
+                                                  spacing: Constants.timelineItemSpacing,
+                                                  aspectRatio: Constants.timelineItemAspectRatio)
 
-        let calculatedSize = NSCollectionLayoutSize(
-            widthDimension: .absolute(itemWidth),
-            heightDimension: .absolute(itemHeight)
-        )
-
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: calculatedSize, subitems: [item])
+        let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize.fitToParent)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: dynamicSize, subitems: [item])
 
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
-        section.interGroupSpacing = spacing
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: padding, bottom: 0, trailing: padding)
-
+        section.interGroupSpacing = Constants.timelineItemSpacing
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0,
+                                                        leading: Constants.timelineItemPadding,
+                                                        bottom: 0,
+                                                        trailing: Constants.timelineItemPadding)
+        // Header
         let titleSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                               heightDimension: .estimated(44))
         let titleSupplementary = NSCollectionLayoutBoundarySupplementaryItem(
@@ -176,18 +190,18 @@ final class HomeController: UIViewController, UICollectionViewDelegate {
 
     private func applySnapshot(animatingDifferences: Bool) {
         let citiesItems = [
-            HomeController.Item.cityItem(CityCell.displayDataStub1),
-            HomeController.Item.cityItem(CityCell.displayDataStub2),
-            HomeController.Item.cityItem(CityCell.displayDataStub3),
-            HomeController.Item.cityItem(CityCell.displayDataStub4),
-            HomeController.Item.cityItem(CityCell.displayDataStub5)
+            HomeViewController.Item.cityItem(CityCell.displayDataStub1),
+            HomeViewController.Item.cityItem(CityCell.displayDataStub2),
+            HomeViewController.Item.cityItem(CityCell.displayDataStub3),
+            HomeViewController.Item.cityItem(CityCell.displayDataStub4),
+            HomeViewController.Item.cityItem(CityCell.displayDataStub5)
         ]
         let timelineItems = [
-            HomeController.Item.timelineItem(TimelineCell.displayDataStub1),
-            HomeController.Item.timelineItem(TimelineCell.displayDataStub2),
-            HomeController.Item.timelineItem(TimelineCell.displayDataStub3),
-            HomeController.Item.timelineItem(TimelineCell.displayDataStub4),
-            HomeController.Item.timelineItem(TimelineCell.displayDataStub5)
+            HomeViewController.Item.timelineItem(TimelineCell.displayDataStub1),
+            HomeViewController.Item.timelineItem(TimelineCell.displayDataStub2),
+            HomeViewController.Item.timelineItem(TimelineCell.displayDataStub3),
+            HomeViewController.Item.timelineItem(TimelineCell.displayDataStub4),
+            HomeViewController.Item.timelineItem(TimelineCell.displayDataStub5)
         ]
 
         var snapshot = Snapshot()
@@ -196,6 +210,13 @@ final class HomeController: UIViewController, UICollectionViewDelegate {
         snapshot.appendItems(timelineItems, toSection: .timeline)
 
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+    }
+
+    private func getLayoutSizeToFitItems(count itemsCount: CGFloat, padding: CGFloat, spacing: CGFloat, aspectRatio: CGFloat) -> NSCollectionLayoutSize {
+        let width = (view.frame.width - spacing) / itemsCount - padding
+        let height = width / aspectRatio
+        let size = NSCollectionLayoutSize(widthDimension: .absolute(width), heightDimension: .absolute(height))
+        return size
     }
 
     // TODO: Remove If not needed

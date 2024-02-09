@@ -49,7 +49,7 @@ final class MainTabBarController: UITabBarController {
     private func configure(_ viewController: UIViewController?, title: String = "", image: UIImage?) -> UIViewController {
         guard let viewController = viewController else { return UIViewController() }
         let size = Constants.iconImageSquareSize
-        let resizedImage = image?.resize(to: CGSize(width: size, height: size))
+        let resizedImage = image?.resized(to: CGSize(width: size, height: size))
         viewController.tabBarItem.image = resizedImage
         viewController.tabBarItem.title = title
         return viewController

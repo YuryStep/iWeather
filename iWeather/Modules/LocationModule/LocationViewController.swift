@@ -1,5 +1,5 @@
 //
-//  SearchController.swift
+//  LocationViewController.swift
 //  iWeather
 //
 //  Created by Юрий Степанчук on 07.02.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SearchController: UIViewController {
+final class LocationViewController: UIViewController {
     private enum Constants {
         static let stabText = "Раздел в разработке"
     }

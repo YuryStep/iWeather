@@ -23,6 +23,7 @@
 		EF1B455F2B73D07200AB519B /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF1B455D2B73D07200AB519B /* Poppins-Regular.ttf */; };
 		EF1B45602B73D07200AB519B /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF1B455E2B73D07200AB519B /* Poppins-SemiBold.ttf */; };
 		EF1B45632B73D0C800AB519B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF1B45622B73D0C800AB519B /* Roboto-Regular.ttf */; };
+		EF51A2782B7627CC001EE4CD /* NSCollectionLayoutSize+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF51A2772B7627CC001EE4CD /* NSCollectionLayoutSize+Extensions.swift */; };
 		EF5D60802B73817B0071E424 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D607F2B73817B0071E424 /* AppDelegate.swift */; };
 		EF5D60822B73817C0071E424 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60812B73817C0071E424 /* SceneDelegate.swift */; };
 		EF5D608C2B73817E0071E424 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF5D608A2B73817E0071E424 /* LaunchScreen.storyboard */; };
@@ -31,12 +32,12 @@
 		EF5D609B2B738C3D0071E424 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF5D609A2B738C3D0071E424 /* Colors.xcassets */; };
 		EF5D609D2B7394DE0071E424 /* IWeatherAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D609C2B7394DE0071E424 /* IWeatherAssembly.swift */; };
 		EF5D609F2B7397A10071E424 /* SearchAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D609E2B7397A10071E424 /* SearchAssembly.swift */; };
-		EF5D60A12B7397C10071E424 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60A02B7397C10071E424 /* SearchController.swift */; };
+		EF5D60A12B7397C10071E424 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60A02B7397C10071E424 /* SearchViewController.swift */; };
 		EF5D60A42B7399010071E424 /* LocationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60A32B7399010071E424 /* LocationAssembly.swift */; };
-		EF5D60A62B73990B0071E424 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60A52B73990B0071E424 /* LocationController.swift */; };
+		EF5D60A62B73990B0071E424 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60A52B73990B0071E424 /* LocationViewController.swift */; };
 		EF5D60A92B73992B0071E424 /* SettingsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60A82B73992B0071E424 /* SettingsAssembly.swift */; };
-		EF5D60AB2B7399530071E424 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60AA2B7399530071E424 /* SettingsController.swift */; };
-		EF5D60AE2B7399770071E424 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60AD2B7399770071E424 /* HomeController.swift */; };
+		EF5D60AB2B7399530071E424 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60AA2B7399530071E424 /* SettingsViewController.swift */; };
+		EF5D60AE2B7399770071E424 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60AD2B7399770071E424 /* HomeViewController.swift */; };
 		EF5D60B02B73998C0071E424 /* HomeAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60AF2B73998C0071E424 /* HomeAssembly.swift */; };
 		EF5D60B82B73A40F0071E424 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60B72B73A40F0071E424 /* TopView.swift */; };
 		EF5D60BC2B73C2880071E424 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60BB2B73C2880071E424 /* UIView+Extensions.swift */; };
@@ -58,6 +59,7 @@
 		EF1B455D2B73D07200AB519B /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		EF1B455E2B73D07200AB519B /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		EF1B45622B73D0C800AB519B /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		EF51A2772B7627CC001EE4CD /* NSCollectionLayoutSize+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCollectionLayoutSize+Extensions.swift"; sourceTree = "<group>"; };
 		EF5D607C2B73817B0071E424 /* iWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF5D607F2B73817B0071E424 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF5D60812B73817C0071E424 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,12 +70,12 @@
 		EF5D609A2B738C3D0071E424 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		EF5D609C2B7394DE0071E424 /* IWeatherAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWeatherAssembly.swift; sourceTree = "<group>"; };
 		EF5D609E2B7397A10071E424 /* SearchAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAssembly.swift; sourceTree = "<group>"; };
-		EF5D60A02B7397C10071E424 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		EF5D60A02B7397C10071E424 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		EF5D60A32B7399010071E424 /* LocationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAssembly.swift; sourceTree = "<group>"; };
-		EF5D60A52B73990B0071E424 /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
+		EF5D60A52B73990B0071E424 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		EF5D60A82B73992B0071E424 /* SettingsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAssembly.swift; sourceTree = "<group>"; };
-		EF5D60AA2B7399530071E424 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
-		EF5D60AD2B7399770071E424 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		EF5D60AA2B7399530071E424 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		EF5D60AD2B7399770071E424 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EF5D60AF2B73998C0071E424 /* HomeAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembly.swift; sourceTree = "<group>"; };
 		EF5D60B72B73A40F0071E424 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
 		EF5D60B92B73BF900071E424 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -144,7 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				EF5D609E2B7397A10071E424 /* SearchAssembly.swift */,
-				EF5D60A02B7397C10071E424 /* SearchController.swift */,
+				EF5D60A02B7397C10071E424 /* SearchViewController.swift */,
 			);
 			path = SearchModule;
 			sourceTree = "<group>";
@@ -153,7 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				EF5D60A32B7399010071E424 /* LocationAssembly.swift */,
-				EF5D60A52B73990B0071E424 /* LocationController.swift */,
+				EF5D60A52B73990B0071E424 /* LocationViewController.swift */,
 			);
 			path = LocationModule;
 			sourceTree = "<group>";
@@ -162,7 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				EF5D60A82B73992B0071E424 /* SettingsAssembly.swift */,
-				EF5D60AA2B7399530071E424 /* SettingsController.swift */,
+				EF5D60AA2B7399530071E424 /* SettingsViewController.swift */,
 			);
 			path = SettingsModule;
 			sourceTree = "<group>";
@@ -171,7 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				EF5D60AF2B73998C0071E424 /* HomeAssembly.swift */,
-				EF5D60AD2B7399770071E424 /* HomeController.swift */,
+				EF5D60AD2B7399770071E424 /* HomeViewController.swift */,
 				EF5D60B72B73A40F0071E424 /* TopView.swift */,
 				EF08ABFE2B74BD59000DD462 /* CityCell.swift */,
 				EF08AC002B74BFC5000DD462 /* TimelineCell.swift */,
@@ -224,6 +226,7 @@
 				EF08ABFA2B74BCE2000DD462 /* UICollectionView+Extensions.swift */,
 				EF08ABFC2B74BD00000DD462 /* UICollectionViewCell+Extensions.swift */,
 				EF08AC0C2B760023000DD462 /* UIImage+Extensions.swift */,
+				EF51A2772B7627CC001EE4CD /* NSCollectionLayoutSize+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -331,18 +334,19 @@
 				EF08AC072B754737000DD462 /* MainTabBarController.swift in Sources */,
 				EF5D60A92B73992B0071E424 /* SettingsAssembly.swift in Sources */,
 				EF08AC032B74C82E000DD462 /* TimelineHeaderView.swift in Sources */,
-				EF5D60A62B73990B0071E424 /* LocationController.swift in Sources */,
+				EF5D60A62B73990B0071E424 /* LocationViewController.swift in Sources */,
 				EF08ABFF2B74BD59000DD462 /* CityCell.swift in Sources */,
-				EF5D60AE2B7399770071E424 /* HomeController.swift in Sources */,
+				EF5D60AE2B7399770071E424 /* HomeViewController.swift in Sources */,
 				EF5D60A42B7399010071E424 /* LocationAssembly.swift in Sources */,
-				EF5D60A12B7397C10071E424 /* SearchController.swift in Sources */,
+				EF5D60A12B7397C10071E424 /* SearchViewController.swift in Sources */,
 				EF5D60BC2B73C2880071E424 /* UIView+Extensions.swift in Sources */,
 				EF08ABF42B73E53D000DD462 /* AppFonts.swift in Sources */,
 				EF08ABF22B73E212000DD462 /* UILabel+Extensions.swift in Sources */,
+				EF51A2782B7627CC001EE4CD /* NSCollectionLayoutSize+Extensions.swift in Sources */,
 				EF5D60B02B73998C0071E424 /* HomeAssembly.swift in Sources */,
 				EF5D609F2B7397A10071E424 /* SearchAssembly.swift in Sources */,
 				EF08ABFD2B74BD00000DD462 /* UICollectionViewCell+Extensions.swift in Sources */,
-				EF5D60AB2B7399530071E424 /* SettingsController.swift in Sources */,
+				EF5D60AB2B7399530071E424 /* SettingsViewController.swift in Sources */,
 				EF08AC0D2B760023000DD462 /* UIImage+Extensions.swift in Sources */,
 				EF08ABF92B74AF40000DD462 /* UIButton+Extensions.swift in Sources */,
 				EF5D60802B73817B0071E424 /* AppDelegate.swift in Sources */,

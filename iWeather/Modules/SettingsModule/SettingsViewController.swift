@@ -1,5 +1,5 @@
 //
-//  SettingsController.swift
+//  SettingsViewController.swift
 //  iWeather
 //
 //  Created by Юрий Степанчук on 07.02.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SettingsController: UIViewController {
+final class SettingsViewController: UIViewController {
     private enum Constants {
         static let stabText = "Раздел в разработке"
     }

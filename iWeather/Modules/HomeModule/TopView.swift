@@ -31,7 +31,10 @@ final class TopView: UIView {
         static let swipeLabelSize: CGFloat = 12
         static let swipeDownImageSize: CGFloat = 22
 
-        static let swipeDownImageName = "chevron.down"
+        static let swipeDownIconWidth: CGFloat = 20
+        static let swipeDownIconHeigh: CGFloat = 10
+
+        static let swipeDownImageName = "iconChevronDown"
         static let swipeLabelText = "Swipe down for details"
     }
 
@@ -55,9 +58,8 @@ final class TopView: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tintColor = .appSwipeDownButton
-        let systemImageConfiguration = UIImage.SymbolConfiguration(pointSize: Constants.swipeDownImageSize, weight: .semibold)
-        let image = UIImage(systemName: Constants.swipeDownImageName)?.withConfiguration(systemImageConfiguration)
-        button.setImage(image, for: .normal)
+        let imageIcon = getSwipeDownIcon()
+        button.setImage(imageIcon, for: .normal)
         return button
     }()
 
@@ -102,6 +104,18 @@ final class TopView: UIView {
         layer.cornerRadius = radius
         layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         clipsToBounds = true
+    }
+
+    private func getSwipeDownIcon() -> UIImage {
+        guard let image = UIImage(named: Constants.swipeDownImageName) else {
+            assertionFailure("Failed to get swipeDownIcon by constant image name")
+            fatalError()
+        }
+        let iconWidth = Constants.swipeDownIconWidth
+        let iconHeight = Constants.swipeDownIconHeigh
+        let iconSize = CGSize(width: iconWidth, height: iconHeight)
+        let resizedIcon = image.resized(to: iconSize)
+        return resizedIcon
     }
 
     private func setupSubviews() {
