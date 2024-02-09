@@ -71,12 +71,20 @@ final class HomeViewController: UIViewController, UICollectionViewDelegate {
         return collectionView
     }()
 
+    let networkService = NetworkService()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
         configureDataSource()
         setupView()
         applySnapshot(animatingDifferences: false)
+        networkService.downloadWeatherInfo { result in
+            switch result {
+            case let .success(weather): print(weather)
+            case let .failure(error): print(error.localizedDescription)
+            }
+        }
     }
 
     private func setupNavigationBar() {
