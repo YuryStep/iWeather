@@ -14,7 +14,7 @@ final class TopView: UIView {
         let temperatureRange: String
         let currentTemperature: String
         let weatherCondition: String
-        let backgroundImage: UIImage
+        let backgroundImage: UIImage = UIImage(named: "topImageStub")!
     }
 
     private enum Constants {
@@ -44,9 +44,7 @@ final class TopView: UIView {
         date: "20 Apr Wed",
         temperatureRange: "20°C/29°C",
         currentTemperature: "24°C",
-        weatherCondition: "Clear sky",
-        backgroundImage: UIImage(named: "topImageStub")!
-    )
+        weatherCondition: "Clear sky")
 
     private lazy var cityLabel = UILabel(.poppinsSemiBold, size: Constants.cityNameSize)
     private lazy var temperatureLabel = UILabel(.poppinsSemiBold, size: Constants.temperatureInfoSize)

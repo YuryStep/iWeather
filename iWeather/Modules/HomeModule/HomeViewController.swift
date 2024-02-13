@@ -7,7 +7,17 @@
 
 import UIKit
 
-final class HomeViewController: UIViewController, UICollectionViewDelegate {
+protocol HomeViewOutput {
+    func getCityCellDisplayData() -> [HomeViewController.Item]
+    func getTimelineCellDisplayData() -> [HomeViewController.Item]
+    func getTopViewDisplayData() -> TopView.DisplayData
+}
+
+protocol HomeViewInput {
+    func updateHomeView()
+}
+
+final class HomeViewController: UIViewController {
     private enum Constants {
         static let profileButtonImageName = "iconPerson"
         static let profileButtonWidth: CGFloat = 34
@@ -26,10 +36,6 @@ final class HomeViewController: UIViewController, UICollectionViewDelegate {
         static let timelineItemAspectRatio = 0.75
     }
 
-    private typealias DataSource = UICollectionViewDiffableDataSource<Section, Item>
-    private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Item>
-    private typealias TimelineHeaderRegistration = UICollectionView.SupplementaryRegistration<TimelineHeaderView>
-
     private enum Section: Int {
         case cities
         case timeline
@@ -40,6 +46,11 @@ final class HomeViewController: UIViewController, UICollectionViewDelegate {
         case timelineItem(TimelineCell.DisplayData)
     }
 
+    private typealias DataSource = UICollectionViewDiffableDataSource<Section, Item>
+    private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Item>
+    private typealias TimelineHeaderRegistration = UICollectionView.SupplementaryRegistration<TimelineHeaderView>
+
+    var presenter: HomeViewOutput!
     private var dataSource: DataSource!
     private lazy var topView = TopView(frame: .zero, displayData: TopView.displayDataStub)
 
@@ -71,20 +82,12 @@ final class HomeViewController: UIViewController, UICollectionViewDelegate {
         return collectionView
     }()
 
-    let networkService = NetworkService()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
         configureDataSource()
         setupView()
         applySnapshot(animatingDifferences: false)
-        networkService.downloadWeatherInfo { result in
-            switch result {
-            case let .success(weather): print(weather)
-            case let .failure(error): print(error.localizedDescription)
-            }
-        }
     }
 
     private func setupNavigationBar() {
@@ -206,21 +209,8 @@ final class HomeViewController: UIViewController, UICollectionViewDelegate {
     }
 
     private func applySnapshot(animatingDifferences: Bool) {
-        let citiesItems = [
-            HomeViewController.Item.cityItem(CityCell.displayDataStub1),
-            HomeViewController.Item.cityItem(CityCell.displayDataStub2),
-            HomeViewController.Item.cityItem(CityCell.displayDataStub3),
-            HomeViewController.Item.cityItem(CityCell.displayDataStub4),
-            HomeViewController.Item.cityItem(CityCell.displayDataStub5)
-        ]
-        let timelineItems = [
-            HomeViewController.Item.timelineItem(TimelineCell.displayDataStub1),
-            HomeViewController.Item.timelineItem(TimelineCell.displayDataStub2),
-            HomeViewController.Item.timelineItem(TimelineCell.displayDataStub3),
-            HomeViewController.Item.timelineItem(TimelineCell.displayDataStub4),
-            HomeViewController.Item.timelineItem(TimelineCell.displayDataStub5)
-        ]
-
+        let citiesItems = presenter.getCityCellDisplayData()
+        let timelineItems = presenter.getTimelineCellDisplayData()
         var snapshot = Snapshot()
         snapshot.appendSections([.cities, .timeline])
         snapshot.appendItems(citiesItems, toSection: .cities)
@@ -258,5 +248,16 @@ final class HomeViewController: UIViewController, UICollectionViewDelegate {
             return 0
         }
         return statusBarManager.statusBarFrame.size.height
+    }
+}
+
+extension HomeViewController: UICollectionViewDelegate { }
+
+extension HomeViewController: HomeViewInput {
+    func updateHomeView() {
+        applySnapshot(animatingDifferences: true)
+        let topViewDisplayData = presenter.getTopViewDisplayData()
+        print()
+        topView = TopView(frame: .zero, displayData: topViewDisplayData)
     }
 }

@@ -15,7 +15,7 @@ class TimelineHeaderView: UICollectionReusableView {
 
     static let reuseIdentifier = "title-supplementary-reuse-identifier"
 
-    private lazy var label = UILabel(.poppinsMedium, size: Constants.labelTextSize)
+    private lazy var label = UILabel(.poppinsMedium, size: Constants.labelTextSize, alignment: .left)
 
     override init(frame: CGRect) {
         super.init(frame: frame)

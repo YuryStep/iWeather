@@ -10,22 +10,15 @@ import UIKit
 final class TimelineCell: UICollectionViewCell {
     struct DisplayData: Equatable, Hashable {
         let id = UUID()
-        let iconName: String = "weatherIconCloudsStub"
-        let temperature: String = "25°C"
-        let time: String = "1:00PM"
+        var iconImageData: Data?
+        var temperature: String = "25°C"
+        var time: String = "1:00PM"
     }
 
     private enum Constants {
         static let temperatureLabelTextSize: CGFloat = 15
         static let timeLabelTextSize: CGFloat = 15
     }
-
-    //  TODO: Remove when Networking will be done
-    static var displayDataStub1 = DisplayData()
-    static var displayDataStub2 = DisplayData()
-    static var displayDataStub3 = DisplayData()
-    static var displayDataStub4 = DisplayData()
-    static var displayDataStub5 = DisplayData()
 
     private lazy var backView: UIView = {
         let view = UIView()
@@ -57,8 +50,12 @@ final class TimelineCell: UICollectionViewCell {
     }
 
     func configure(with displayData: DisplayData) {
-        if let image = UIImage(named: displayData.iconName) {
+        if let imageData = displayData.iconImageData,
+            let image = UIImage(data: imageData) {
             imageView.image = image
+        } else {
+            debugPrint("UIImage cannot work with SVG. stub used")
+            imageView.image = UIImage(named: "weatherIconCloudsStub")
         }
         temperatureLabel.text = displayData.temperature
         timeLabel.text = displayData.time

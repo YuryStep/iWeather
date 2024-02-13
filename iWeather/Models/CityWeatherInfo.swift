@@ -1,5 +1,5 @@
 //
-//  WeatherModel.swift
+//  CityWeatherInfo.swift
 //  iWeather
 //
 //  Created by Юрий Степанчук on 09.02.2024.
@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct WeatherModel: Codable {
+struct CityWeatherInfo: Codable {
     let geoObject: GeoObject
     let fact: Fact
-    let forecasts: [Forecast]
+    var forecasts: [Forecast]
 
     enum CodingKeys: String, CodingKey {
         case geoObject = "geo_object"
@@ -48,13 +48,20 @@ struct Fact: Codable {
 struct Forecast: Codable {
     let date: String?
     let parts: Parts
-    let hours: [Hour]
+    var hours: [HourWeatherInfo]
 }
 
-struct Hour: Codable {
-    let hour: String?
-    let temp: Int?
-    let icon: String?
+struct HourWeatherInfo: Codable {
+    let hour: String
+    let temperature: Int
+    let iconName: String
+    var iconImageData: Data?
+
+    enum CodingKeys: String, CodingKey {
+        case hour
+        case temperature = "temp"
+        case iconName = "icon"
+    }
 }
 
 struct Parts: Codable {

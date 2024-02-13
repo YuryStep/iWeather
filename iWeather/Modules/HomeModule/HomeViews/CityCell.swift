@@ -10,22 +10,15 @@ import UIKit
 final class CityCell: UICollectionViewCell {
     struct DisplayData: Equatable, Hashable {
         let id = UUID()
-        let imageName: String
-        let cityName: String = "Jaipur"
-        let currentTemperature: String = "30°C"
+        var imageName: String = "cityImageStub"
+        var cityName: String = "Jaipur"
+        var currentTemperature: String = "30°C"
     }
 
     private enum Constants {
         static let padding: CGFloat = 20
-        static let labelTextSize: CGFloat = 20
+        static let labelTextSize: CGFloat = 18
     }
-
-    //  TODO: Remove when Networking will be done
-    static var displayDataStub1 = DisplayData(imageName: "cityImageStub")
-    static var displayDataStub2 = DisplayData(imageName: "cityImageStub")
-    static var displayDataStub3 = DisplayData(imageName: "cityImageStub")
-    static var displayDataStub4 = DisplayData(imageName: "cityImageStub")
-    static var displayDataStub5 = DisplayData(imageName: "cityImageStub")
 
     private lazy var label = UILabel(.poppinsSemiBold, size: Constants.labelTextSize)
 
@@ -64,7 +57,8 @@ final class CityCell: UICollectionViewCell {
             imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
 
-            label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.padding)
         ])
     }

@@ -14,8 +14,31 @@ final class NetworkService {
         static let HTTPHeaderField = "X-Yandex-API-Key"
     }
 
-    func downloadWeatherInfo(completion: @escaping (Result<WeatherModel, NetworkError>) -> Void) {
-        guard let url = URL(string: Constants.searchEndpoint + "lat=55.75396&lon=37.620393&hours=true") else {
+    func downloadWeatherInfo(for cities: [PresetCity], completion: @escaping (Result<[CityWeatherInfo], NetworkError>) -> Void) {
+        var citiesWeatherInfo: [CityWeatherInfo] = []
+        let dispatchGroup = DispatchGroup()
+
+        for city in cities {
+            dispatchGroup.enter()
+
+            let (latitude, longitude) = city.coordinates
+            downloadWeatherInfoForCityAt(latitude: latitude, longitude: longitude) { result in
+                switch result {
+                case let .success(weatherInfo): citiesWeatherInfo.append(weatherInfo)
+                case let .failure(error): print(error.localizedDescription)
+                }
+                dispatchGroup.leave()
+            }
+        }
+        dispatchGroup.notify(queue: .main) {
+            self.addWeatherIconsData(to: citiesWeatherInfo) { result in
+                completion(result)
+            }
+        }
+    }
+
+    private func downloadWeatherInfoForCityAt(latitude lat: String, longitude lon: String, completion: @escaping (Result<CityWeatherInfo, NetworkError>) -> Void) {
+        guard let url = URL(string: Constants.searchEndpoint + "lat=\(lat)&lon=\(lon)&hours=true") else {
             completion(.failure(.invalidURL))
             return
         }
@@ -44,7 +67,34 @@ final class NetworkService {
         }
     }
 
-    func downloadImageData(from urlString: String, completion: @escaping (Result<Data, NetworkError>) -> Void) {
+    private func addWeatherIconsData(to citiesWeatherInfo: [CityWeatherInfo], completion: @escaping (Result<[CityWeatherInfo], NetworkError>) -> Void) {
+        var updatedCitiesWeatherInfo = citiesWeatherInfo
+        let dispatchGroup = DispatchGroup()
+
+        for (cityIndex, city) in citiesWeatherInfo.enumerated() {
+            for (hourIndex, hour) in city.forecasts[0].hours.enumerated() {
+                let iconImageURLString = "https://yastatic.net/weather/i/icons/funky/dark/\(hour.iconName).svg"
+                dispatchGroup.enter()
+                downloadImageData(from: iconImageURLString) { result in
+                    defer {
+                        dispatchGroup.leave()
+                    }
+                    switch result {
+                    case let .success(iconImageData):
+                        updatedCitiesWeatherInfo[cityIndex].forecasts[0].hours[hourIndex].iconImageData = iconImageData
+                    case let .failure(error):
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        }
+        dispatchGroup.notify(queue: .main) {
+            completion(.success(updatedCitiesWeatherInfo))
+        }
+    }
+
+
+    private func downloadImageData(from urlString: String, completion: @escaping (Result<Data, NetworkError>) -> Void) {
         guard let url = URL(string: urlString) else {
             completion(.failure(.invalidURL))
             return
@@ -117,10 +167,10 @@ final class NetworkService {
         }
     }
 
-    private func parseWeatherInfo(from data: Data, completion: @escaping (Result<WeatherModel, NetworkError>) -> Void) {
+    private func parseWeatherInfo(from data: Data, completion: @escaping (Result<CityWeatherInfo, NetworkError>) -> Void) {
         let decoder = JSONDecoder()
         do {
-            let weather = try decoder.decode(WeatherModel.self, from: data)
+            let weather = try decoder.decode(CityWeatherInfo.self, from: data)
             completion(.success(weather))
         } catch {
             completion(.failure(NetworkError.decodingFailed))
