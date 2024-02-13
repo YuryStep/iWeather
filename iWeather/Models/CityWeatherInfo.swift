@@ -17,37 +17,34 @@ struct CityWeatherInfo: Codable {
         case fact
         case forecasts
     }
+
+    var temperatureRange: String {
+        guard let firstForecast = forecasts.first else { return "" }
+        let temperatures = firstForecast.hours.map { $0.temperature }
+        guard let minTemperature = temperatures.min(),
+              let maxTemperature = temperatures.max()
+        else {
+            return ""
+        }
+
+        return "\(minTemperature)".addDegreeSymbol() + "/" + "\(maxTemperature)".addDegreeSymbol()
+    }
 }
 
 struct Fact: Codable {
     let temp: Int?
-    let feelsLike: Int?
     let icon: String?
     let condition: String?
-    let windSpeed: Double?
-    let windDir: String?
-    let pressureMm: Int?
-    let humidity: Int?
-    let daytime: String?
-    let season: String?
 
     enum CodingKeys: String, CodingKey {
         case temp
-        case feelsLike = "feels_like"
         case icon
         case condition
-        case windSpeed = "wind_speed"
-        case windDir = "wind_dir"
-        case pressureMm = "pressure_mm"
-        case humidity
-        case daytime
-        case season
     }
 }
 
 struct Forecast: Codable {
     let date: String?
-    let parts: Parts
     var hours: [HourWeatherInfo]
 }
 
@@ -61,16 +58,6 @@ struct HourWeatherInfo: Codable {
         case hour
         case temperature = "temp"
         case iconName = "icon"
-    }
-}
-
-struct Parts: Codable {
-    let nightShort: Fact
-    let dayShort: Fact
-
-    enum CodingKeys: String, CodingKey  {
-        case nightShort = "night_short"
-        case dayShort = "day_short"
     }
 }
 

@@ -1,20 +1,19 @@
 //
-//  TopView.swift
+//  CurrentCityCell.swift
 //  iWeather
 //
-//  Created by Юрий Степанчук on 07.02.2024.
+//  Created by Юрий Степанчук on 13.02.2024.
 //
 
 import UIKit
 
-final class TopView: UIView {
-    struct DisplayData {
+final class CurrentCityCell: UICollectionViewCell {
+    struct DisplayData: Equatable, Hashable {
         let cityName: String
-        let date: String
         let temperatureRange: String
         let currentTemperature: String
         let weatherCondition: String
-        let backgroundImage: UIImage = UIImage(named: "topImageStub")!
+        let backgroundImage: UIImage = .init(named: "topImageStub")!
     }
 
     private enum Constants {
@@ -41,10 +40,10 @@ final class TopView: UIView {
     //  TODO: Remove when Networking will be done
     static var displayDataStub = DisplayData(
         cityName: "Hyderabad",
-        date: "20 Apr Wed",
         temperatureRange: "20°C/29°C",
         currentTemperature: "24°C",
-        weatherCondition: "Clear sky")
+        weatherCondition: "Clear sky"
+    )
 
     private lazy var cityLabel = UILabel(.poppinsSemiBold, size: Constants.cityNameSize)
     private lazy var temperatureLabel = UILabel(.poppinsSemiBold, size: Constants.temperatureInfoSize)
@@ -76,11 +75,10 @@ final class TopView: UIView {
         return imageView
     }()
 
-    init(frame: CGRect, displayData: DisplayData) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
         makeBottomCornersRounded(radius: Constants.bottomCornersRadius)
-        updateUI(with: displayData)
         setupSubviews()
     }
 
@@ -89,13 +87,21 @@ final class TopView: UIView {
         fatalError("This class does not support NSCoder")
     }
 
-    func updateUI(with displayData: DisplayData) {
+    func configure(with displayData: DisplayData) {
         backgroundImageView.image = displayData.backgroundImage
         cityLabel.text = displayData.cityName
-        dateAndRangeLabel.text = "\(displayData.date) \(displayData.temperatureRange)"
+        dateAndRangeLabel.text = getCurrentDateString() + " \(displayData.temperatureRange)"
         temperatureLabel.text = displayData.currentTemperature
         swipeLabel.text = Constants.swipeLabelText
         weatherCondition.text = displayData.weatherCondition
+    }
+
+    private func getCurrentDateString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM EEE"
+        let currentDate = Date()
+        let formattedDate = dateFormatter.string(from: currentDate)
+        return formattedDate
     }
 
     private func makeBottomCornersRounded(radius: CGFloat) {

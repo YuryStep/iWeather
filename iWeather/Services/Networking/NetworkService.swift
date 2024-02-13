@@ -93,7 +93,6 @@ final class NetworkService {
         }
     }
 
-
     private func downloadImageData(from urlString: String, completion: @escaping (Result<Data, NetworkError>) -> Void) {
         guard let url = URL(string: urlString) else {
             completion(.failure(.invalidURL))

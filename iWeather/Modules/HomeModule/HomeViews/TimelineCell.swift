@@ -51,7 +51,8 @@ final class TimelineCell: UICollectionViewCell {
 
     func configure(with displayData: DisplayData) {
         if let imageData = displayData.iconImageData,
-            let image = UIImage(data: imageData) {
+           let image = UIImage(data: imageData)
+        {
             imageView.image = image
         } else {
             debugPrint("UIImage cannot work with SVG. stub used")

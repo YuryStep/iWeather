@@ -10,7 +10,8 @@ import UIKit
 protocol HomeViewOutput {
     func getCityCellDisplayData() -> [HomeViewController.Item]
     func getTimelineCellDisplayData() -> [HomeViewController.Item]
-    func getTopViewDisplayData() -> TopView.DisplayData
+    func getCurrentCityCellDisplayData() -> [HomeViewController.Item]
+    func didTapOnCell(at indexPath: IndexPath)
 }
 
 protocol HomeViewInput {
@@ -37,11 +38,13 @@ final class HomeViewController: UIViewController {
     }
 
     private enum Section: Int {
+        case currentCity
         case cities
         case timeline
     }
 
     enum Item: Hashable {
+        case currentCity(CurrentCityCell.DisplayData)
         case cityItem(CityCell.DisplayData)
         case timelineItem(TimelineCell.DisplayData)
     }
@@ -52,7 +55,6 @@ final class HomeViewController: UIViewController {
 
     var presenter: HomeViewOutput!
     private var dataSource: DataSource!
-    private lazy var topView = TopView(frame: .zero, displayData: TopView.displayDataStub)
 
     private lazy var profileButton: UIButton = {
         let button = UIButton(assetsImage: Constants.profileButtonImageName,
@@ -76,6 +78,7 @@ final class HomeViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(CityCell.self)
         collectionView.register(TimelineCell.self)
+        collectionView.register(CurrentCityCell.self)
         collectionView.delegate = self
         collectionView.backgroundColor = .clear
         collectionView.isScrollEnabled = false
@@ -99,15 +102,11 @@ final class HomeViewController: UIViewController {
 
     private func setupView() {
         view.backgroundColor = .appBackground
-        view.addSubviews([topView, collectionView])
+        view.addSubview(collectionView)
+        let offset = getStatusBarHeight() * -2
         NSLayoutConstraint.activate([
-            topView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            topView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            topView.topAnchor.constraint(equalTo: view.topAnchor),
-            topView.heightAnchor.constraint(equalToConstant: view.frame.height * 0.4252),
-
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.topAnchor.constraint(equalTo: topView.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: offset),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
@@ -121,6 +120,12 @@ final class HomeViewController: UIViewController {
             }
 
             switch section {
+            case .currentCity:
+                let cell = collectionView.reuse(CurrentCityCell.self, indexPath)
+                if case let .currentCity(currentCityCellDisplayData) = itemIdentifier {
+                    cell.configure(with: currentCityCellDisplayData)
+                }
+                return cell
             case .cities:
                 let cell = collectionView.reuse(CityCell.self, indexPath)
                 if case let .cityItem(cityCellDisplayData) = itemIdentifier {
@@ -153,6 +158,7 @@ final class HomeViewController: UIViewController {
                 return nil
             }
             switch section {
+            case .currentCity: return createCurrentCitySectionLayout()
             case .cities: return createCitiesSectionLayout()
             case .timeline: return createTimelineSectionLayout()
             }
@@ -160,6 +166,15 @@ final class HomeViewController: UIViewController {
 
         let layout = UICollectionViewCompositionalLayout(sectionProvider: sectionProvider)
         return layout
+    }
+
+    private func createCurrentCitySectionLayout() -> NSCollectionLayoutSection {
+        let item = NSCollectionLayoutItem(layoutSize: .fitToParent)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                               heightDimension: .fractionalHeight(0.4))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        return section
     }
 
     private func createCitiesSectionLayout() -> NSCollectionLayoutSection {
@@ -209,10 +224,13 @@ final class HomeViewController: UIViewController {
     }
 
     private func applySnapshot(animatingDifferences: Bool) {
+        let currentCityItem = presenter.getCurrentCityCellDisplayData()
         let citiesItems = presenter.getCityCellDisplayData()
         let timelineItems = presenter.getTimelineCellDisplayData()
+
         var snapshot = Snapshot()
-        snapshot.appendSections([.cities, .timeline])
+        snapshot.appendSections([.currentCity, .cities, .timeline])
+        snapshot.appendItems(currentCityItem, toSection: .currentCity)
         snapshot.appendItems(citiesItems, toSection: .cities)
         snapshot.appendItems(timelineItems, toSection: .timeline)
 
@@ -251,13 +269,33 @@ final class HomeViewController: UIViewController {
     }
 }
 
-extension HomeViewController: UICollectionViewDelegate { }
+extension HomeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard indexPath.section == Section.cities.rawValue else { return }
+        presenter.didTapOnCell(at: indexPath)
+        collectionView.deselectItem(at: indexPath, animated: false)
+    }
+}
 
 extension HomeViewController: HomeViewInput {
     func updateHomeView() {
         applySnapshot(animatingDifferences: true)
-        let topViewDisplayData = presenter.getTopViewDisplayData()
-        print()
-        topView = TopView(frame: .zero, displayData: topViewDisplayData)
+        scrollHourTimelineToNowItem()
+    }
+
+    private func scrollHourTimelineToNowItem() {
+        let indexPath = IndexPath(item: currentHour(), section: Section.timeline.rawValue)
+        guard collectionView.numberOfSections >= 3,
+              collectionView.numberOfItems(inSection: Section.timeline.rawValue) >= 24 else { return }
+        collectionView.scrollToItem(at: indexPath,
+                                    at: .left,
+                                    animated: true)
+    }
+
+    private func currentHour() -> Int {
+        let currentDate = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: currentDate)
+        return hour
     }
 }

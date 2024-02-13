@@ -42,12 +42,12 @@
 		EF5D60AB2B7399530071E424 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60AA2B7399530071E424 /* SettingsViewController.swift */; };
 		EF5D60AE2B7399770071E424 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60AD2B7399770071E424 /* HomeViewController.swift */; };
 		EF5D60B02B73998C0071E424 /* HomeAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60AF2B73998C0071E424 /* HomeAssembly.swift */; };
-		EF5D60B82B73A40F0071E424 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60B72B73A40F0071E424 /* TopView.swift */; };
 		EF5D60BC2B73C2880071E424 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60BB2B73C2880071E424 /* UIView+Extensions.swift */; };
 		EF7752F22B775338009E792C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7752F12B775338009E792C /* String+Extensions.swift */; };
 		EF7752F42B7A4841009E792C /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7752F32B7A4841009E792C /* Array+Extensions.swift */; };
 		EF7752F62B7A4A7F009E792C /* PresetCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7752F52B7A4A7F009E792C /* PresetCity.swift */; };
 		EFDF593D2B76A18700858299 /* HomeViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDF593C2B76A18700858299 /* HomeViewPresenter.swift */; };
+		EFEB1BE82B7BC48C00DD2D9D /* CurrentCityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB1BE72B7BC48C00DD2D9D /* CurrentCityCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,13 +87,13 @@
 		EF5D60AA2B7399530071E424 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		EF5D60AD2B7399770071E424 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EF5D60AF2B73998C0071E424 /* HomeAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembly.swift; sourceTree = "<group>"; };
-		EF5D60B72B73A40F0071E424 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
 		EF5D60B92B73BF900071E424 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF5D60BB2B73C2880071E424 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		EF7752F12B775338009E792C /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		EF7752F32B7A4841009E792C /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		EF7752F52B7A4A7F009E792C /* PresetCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetCity.swift; sourceTree = "<group>"; };
 		EFDF593C2B76A18700858299 /* HomeViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewPresenter.swift; sourceTree = "<group>"; };
+		EFEB1BE72B7BC48C00DD2D9D /* CurrentCityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentCityCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,7 +276,7 @@
 		EFE1D4CD2B76A1F4003A17B7 /* HomeViews */ = {
 			isa = PBXGroup;
 			children = (
-				EF5D60B72B73A40F0071E424 /* TopView.swift */,
+				EFEB1BE72B7BC48C00DD2D9D /* CurrentCityCell.swift */,
 				EF08ABFE2B74BD59000DD462 /* CityCell.swift */,
 				EF08AC002B74BFC5000DD462 /* TimelineCell.swift */,
 				EF08AC022B74C82E000DD462 /* TimelineHeaderView.swift */,
@@ -385,6 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF08AC072B754737000DD462 /* MainTabBarController.swift in Sources */,
+				EFEB1BE82B7BC48C00DD2D9D /* CurrentCityCell.swift in Sources */,
 				EF51A27F2B7631C9001EE4CD /* NetworkError.swift in Sources */,
 				EF5D60A92B73992B0071E424 /* SettingsAssembly.swift in Sources */,
 				EF08AC032B74C82E000DD462 /* TimelineHeaderView.swift in Sources */,
@@ -414,7 +415,6 @@
 				EF08ABF72B749E4F000DD462 /* UIViewController+Extensions.swift in Sources */,
 				EF08ABFB2B74BCE2000DD462 /* UICollectionView+Extensions.swift in Sources */,
 				EF5D609D2B7394DE0071E424 /* IWeatherAssembly.swift in Sources */,
-				EF5D60B82B73A40F0071E424 /* TopView.swift in Sources */,
 				EF5D60822B73817C0071E424 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

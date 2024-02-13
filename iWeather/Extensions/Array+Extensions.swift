@@ -7,14 +7,20 @@
 
 import Foundation
 
+extension Array where Element == CurrentCityCell.DisplayData {
+    func toCurrentCityItems() -> [HomeViewController.Item] {
+        return map { .currentCity($0) }
+    }
+}
+
 extension Array where Element == CityCell.DisplayData {
     func toCityItems() -> [HomeViewController.Item] {
-        return self.map { .cityItem($0) }
+        return map { .cityItem($0) }
     }
 }
 
 extension Array where Element == TimelineCell.DisplayData {
     func toTimelineItems() -> [HomeViewController.Item] {
-        return self.map { .timelineItem($0) }
+        return map { .timelineItem($0) }
     }
 }

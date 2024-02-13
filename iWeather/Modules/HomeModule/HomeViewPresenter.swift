@@ -11,19 +11,19 @@ class HomeViewPresenter {
     private struct State {
         static var stubTimeLineItems = {
             var stubTimeLineItems = [TimelineCell.DisplayData]()
-            for _ in 0..<24 {
+            for _ in 0 ..< 24 {
                 stubTimeLineItems.append(TimelineCell.DisplayData())
             }
             return stubTimeLineItems
         }()
 
         static var stubCityCellItems = [
-                CityCell.DisplayData(imageName: "cityImageStub",
-                                     cityName: "Москва",
-                                     currentTemperature: "-5".addDegreeSymbol()),
-                CityCell.DisplayData(imageName: "cityImageStub",
-                                     cityName: "Казань",
-                                     currentTemperature: "-17".addDegreeSymbol())
+            CityCell.DisplayData(imageName: "cityImageStub",
+                                 cityName: "Москва",
+                                 currentTemperature: "-5".addDegreeSymbol()),
+            CityCell.DisplayData(imageName: "cityImageStub",
+                                 cityName: "Казань",
+                                 currentTemperature: "-17".addDegreeSymbol())
         ]
         var currentCity: CityWeatherInfo?
         var citiesWeatherInfo = [CityWeatherInfo]()
@@ -31,7 +31,7 @@ class HomeViewPresenter {
 
     private weak var view: HomeViewController?
     private var networkService: NetworkService
-    private var state: State = State()
+    private var state: State = .init()
 
     init(view: HomeViewController?, networkService: NetworkService) {
         self.view = view
@@ -40,7 +40,7 @@ class HomeViewPresenter {
     }
 
     private func downloadWeatherInfoForPresetCitities() {
-        networkService.downloadWeatherInfo(for: PresetCity.allCases ) { result in
+        networkService.downloadWeatherInfo(for: PresetCity.allCases) { result in
             switch result {
             case let .success(citiesWeatherInfo):
                 self.state.citiesWeatherInfo = citiesWeatherInfo
@@ -53,8 +53,13 @@ class HomeViewPresenter {
 }
 
 extension HomeViewPresenter: HomeViewOutput {
-    func getTopViewDisplayData() -> TopView.DisplayData {
-        TopView.DisplayData(cityWeatherInfo: state.currentCity!)
+    func didTapOnCell(at indexPath: IndexPath) {
+        state.currentCity = state.citiesWeatherInfo[indexPath.row]
+        view?.updateHomeView()
+    }
+
+    func getCurrentCityCellDisplayData() -> [HomeViewController.Item] {
+        return getCurrentCityCellDisplayData().toCurrentCityItems()
     }
 
     func getCityCellDisplayData() -> [HomeViewController.Item] {
@@ -67,6 +72,11 @@ extension HomeViewPresenter: HomeViewOutput {
     func getTimelineCellDisplayData() -> [HomeViewController.Item] {
         guard !state.citiesWeatherInfo.isEmpty else { return State.stubTimeLineItems.toTimelineItems() }
         return getTimeLineItems().toTimelineItems()
+    }
+
+    private func getCurrentCityCellDisplayData() -> [CurrentCityCell.DisplayData] {
+        guard let currentCity = state.currentCity else { return [CurrentCityCell.displayDataStub] }
+        return [CurrentCityCell.DisplayData(cityWeatherInfo: currentCity)]
     }
 
     private func getCityCellItems() -> [CityCell.DisplayData] {
@@ -88,35 +98,26 @@ extension HomeViewPresenter: HomeViewOutput {
     }
 }
 
-fileprivate extension TopView.DisplayData {
+private extension CurrentCityCell.DisplayData {
     init(cityWeatherInfo: CityWeatherInfo) {
-        self.cityName = cityWeatherInfo.geoObject.locality.name
-        self.currentTemperature = String(cityWeatherInfo.fact.temp!).addDegreeSymbol()
-        self.date = "getCurrentDateFormatted()"
-        self.temperatureRange = "temperatureRange"
-        self.weatherCondition = cityWeatherInfo.fact.condition!
+        cityName = cityWeatherInfo.geoObject.locality.name
+        currentTemperature = String(cityWeatherInfo.fact.temp!).addDegreeSymbol()
+        temperatureRange = cityWeatherInfo.temperatureRange
+        weatherCondition = cityWeatherInfo.fact.condition!
     }
-
-//    private func getCurrentDateFormatted() -> String {
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "dd MMM EEE"
-//        let currentDate = Date()
-//        let formattedDate = dateFormatter.string(from: currentDate)
-//        return formattedDate
-//    }
 }
 
-fileprivate extension CityCell.DisplayData {
+private extension CityCell.DisplayData {
     init(whetherModel: CityWeatherInfo) {
-    cityName = whetherModel.geoObject.locality.name
-    currentTemperature = String(whetherModel.fact.temp!).addDegreeSymbol()
+        cityName = whetherModel.geoObject.locality.name
+        currentTemperature = String(whetherModel.fact.temp!).addDegreeSymbol()
     }
 }
 
-fileprivate extension TimelineCell.DisplayData {
+private extension TimelineCell.DisplayData {
     init(hourWeatherInfo: HourWeatherInfo) {
-        self.iconImageData = hourWeatherInfo.iconImageData
-        self.temperature = String(hourWeatherInfo.temperature).addDegreeSymbol()
-        self.time = hourWeatherInfo.hour.transformedTo12HourFormat()
+        iconImageData = hourWeatherInfo.iconImageData
+        temperature = String(hourWeatherInfo.temperature).addDegreeSymbol()
+        time = hourWeatherInfo.hour.transformedTo12HourFormat()
     }
 }
