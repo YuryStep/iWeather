@@ -74,7 +74,7 @@ final class HomeViewController: UIViewController {
 
     private lazy var collectionView: UICollectionView = {
         let layout = createLayout()
-        let collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(CityCell.self)
         collectionView.register(TimelineCell.self)
@@ -82,6 +82,7 @@ final class HomeViewController: UIViewController {
         collectionView.delegate = self
         collectionView.backgroundColor = .clear
         collectionView.isScrollEnabled = false
+        collectionView.contentInsetAdjustmentBehavior = .never
         return collectionView
     }()
 
@@ -103,10 +104,9 @@ final class HomeViewController: UIViewController {
     private func setupView() {
         view.backgroundColor = .appBackground
         view.addSubview(collectionView)
-        let offset = getStatusBarHeight() * -2
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: offset),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
