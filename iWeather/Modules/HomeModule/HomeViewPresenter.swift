@@ -9,27 +9,17 @@ import Foundation
 
 class HomeViewPresenter {
     private struct State {
-        static var stubTimeLineItems = {
-            var stubTimeLineItems = [TimelineCell.DisplayData]()
-            for _ in 0 ..< 24 { stubTimeLineItems.append(TimelineCell.DisplayData()) }
-            return stubTimeLineItems
-        }()
-
-        static var stubCityCellItems = [
-            CityCell.DisplayData(cityName: "Москва", currentTemperature: "-5".addDegreeSymbol()),
-            CityCell.DisplayData(cityName: "Казань", currentTemperature: "-17".addDegreeSymbol())
-        ]
-
         var currentCity: CityWeatherInfo?
         var citiesWeatherInfo = [CityWeatherInfo]()
     }
 
     private weak var view: HomeViewController?
-    private var networkService: NetworkService
-    private var state: State = .init()
+    private var networkService: AppNetworkService
+    private var state: State
 
-    init(view: HomeViewController?, networkService: NetworkService) {
+    init(view: HomeViewController?, networkService: AppNetworkService) {
         self.view = view
+        self.state = State()
         self.networkService = networkService
         downloadWeatherInfoForPresetCities()
     }
@@ -39,9 +29,10 @@ class HomeViewPresenter {
             switch result {
             case let .success(citiesWeatherInfo):
                 self.state.citiesWeatherInfo = citiesWeatherInfo
-                self.state.currentCity = citiesWeatherInfo[0]
-                self.view?.updateHomeView()
-            case let .failure(error): print(error.localizedDescription)
+                self.state.currentCity = citiesWeatherInfo.first
+                self.view?.updateView()
+            case let .failure(error):
+                print(error.localizedDescription)
             }
         }
     }
@@ -49,51 +40,34 @@ class HomeViewPresenter {
 
 extension HomeViewPresenter: HomeViewOutput {
     func getCityCellDisplayData() -> [HomeCollectionView.Item] {
-        guard !state.citiesWeatherInfo.isEmpty else {
-            return State.stubCityCellItems.toCityItems()
+        guard !state.citiesWeatherInfo.isEmpty else { return Stub.stubCityCellDisplayData.toCityItems() }
+        var cityCellDisplayData = [CityCell.DisplayData]()
+        for cityWeatherInfo in state.citiesWeatherInfo {
+            cityCellDisplayData.append(CityCell.DisplayData(whetherModel: cityWeatherInfo))
         }
-        return getCityCellItems().toCityItems()
+        return cityCellDisplayData.toCityItems()
     }
 
     func getTimelineCellDisplayData() -> [HomeCollectionView.Item] {
-        guard !state.citiesWeatherInfo.isEmpty else { return State.stubTimeLineItems.toTimelineItems() }
-        return getTimeLineItems().toTimelineItems()
+        guard let currentCity = state.currentCity else { return Stub.stubTimeLineCellDisplayData.toTimelineItems() }
+        var timeLineDisplayData = [TimelineCell.DisplayData]()
+        for hourWeatherInfo in currentCity.forecasts[0].hours {
+            timeLineDisplayData.append(TimelineCell.DisplayData(hourWeatherInfo: hourWeatherInfo))
+        }
+        return timeLineDisplayData.toTimelineItems()
     }
 
     func getCurrentCityCellDisplayData() -> [HomeCollectionView.Item] {
-        return getCurrentCityCellDisplayData().toCurrentCityItems()
-    }
+        guard let currentCity = state.currentCity else { return Stub.stubCurrentCityCellDisplayData.toCurrentCityItems() }
+        return [CurrentCityCell.DisplayData(cityWeatherInfo: currentCity)].toCurrentCityItems()    }
 
     func didTapOnCell(at indexPath: IndexPath) {
         state.currentCity = state.citiesWeatherInfo[indexPath.row]
-        view?.updateHomeView()
-    }
-
-    private func getCurrentCityCellDisplayData() -> [CurrentCityCell.DisplayData] {
-        guard let currentCity = state.currentCity else { return [CurrentCityCell.displayDataStub] }
-        return [CurrentCityCell.DisplayData(cityWeatherInfo: currentCity)]
-    }
-
-    private func getCityCellItems() -> [CityCell.DisplayData] {
-        guard !state.citiesWeatherInfo.isEmpty else { return State.stubCityCellItems }
-        var cityCellItems = [CityCell.DisplayData]()
-        for weatherModel in state.citiesWeatherInfo {
-            cityCellItems.append(CityCell.DisplayData(whetherModel: weatherModel))
-        }
-        return cityCellItems
-    }
-
-    private func getTimeLineItems() -> [TimelineCell.DisplayData] {
-        guard let currentCity = state.currentCity else { return State.stubTimeLineItems }
-        var timeLineItems = [TimelineCell.DisplayData]()
-        for hourWeatherInfo in currentCity.forecasts[0].hours {
-            timeLineItems.append(TimelineCell.DisplayData(hourWeatherInfo: hourWeatherInfo))
-        }
-        return timeLineItems
+        view?.updateView()
     }
 }
 
-private extension CurrentCityCell.DisplayData {
+fileprivate extension CurrentCityCell.DisplayData {
     init(cityWeatherInfo: CityWeatherInfo) {
         cityName = cityWeatherInfo.geoObject.locality.name
         currentTemperature = String(cityWeatherInfo.fact.temp!).addDegreeSymbol()
@@ -102,17 +76,36 @@ private extension CurrentCityCell.DisplayData {
     }
 }
 
-private extension CityCell.DisplayData {
+fileprivate extension CityCell.DisplayData {
     init(whetherModel: CityWeatherInfo) {
         cityName = whetherModel.geoObject.locality.name
         currentTemperature = String(whetherModel.fact.temp!).addDegreeSymbol()
     }
 }
 
-private extension TimelineCell.DisplayData {
+fileprivate extension TimelineCell.DisplayData {
     init(hourWeatherInfo: HourWeatherInfo) {
         iconImageData = hourWeatherInfo.iconImageData
         temperature = String(hourWeatherInfo.temperature).addDegreeSymbol()
         time = hourWeatherInfo.hour.transformedTo12HourFormat()
     }
+}
+
+private struct Stub {
+    static var stubCurrentCityCellDisplayData = [CurrentCityCell.DisplayData(
+        cityName: "Hyderabad",
+        temperatureRange: "20°C/29°C",
+        currentTemperature: "24°C",
+        weatherCondition: "Clear sky")]
+
+    static var stubTimeLineCellDisplayData = {
+        var stubTimeLineItems = [TimelineCell.DisplayData]()
+        for _ in 0 ..< 24 { stubTimeLineItems.append(TimelineCell.DisplayData()) }
+        return stubTimeLineItems
+    }()
+
+    static var stubCityCellDisplayData = [
+        CityCell.DisplayData(cityName: "Москва", currentTemperature: "-5".addDegreeSymbol()),
+        CityCell.DisplayData(cityName: "Казань", currentTemperature: "-17".addDegreeSymbol())
+    ]
 }

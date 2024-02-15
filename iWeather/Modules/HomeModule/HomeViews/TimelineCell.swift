@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SVGKit
 
 final class TimelineCell: UICollectionViewCell {
     struct DisplayData: Equatable, Hashable {
@@ -18,13 +19,17 @@ final class TimelineCell: UICollectionViewCell {
     private enum Constants {
         static let temperatureLabelTextSize: CGFloat = 15
         static let timeLabelTextSize: CGFloat = 15
+        static let backViewCornerRadius: CGFloat = 16
+        static let iconSquareSize: CGFloat = 30
+        static let topPadding: CGFloat = 10
+        static let inset: CGFloat = 5
     }
 
     private lazy var backView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .appTodayWeatherCellBackground
-        view.layer.cornerRadius = 16
+        view.layer.cornerRadius = Constants.backViewCornerRadius
         return view
     }()
 
@@ -46,38 +51,38 @@ final class TimelineCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupSubviews()
-        backgroundColor = .clear
+        setupCellStyle()
     }
 
     func configure(with displayData: DisplayData) {
-        if let imageData = displayData.iconImageData,
-           let image = UIImage(data: imageData)
-        {
-            imageView.image = image
-        } else {
-            debugPrint("UIImage cannot work with SVG. stub used")
-            imageView.image = UIImage(named: "weatherIconCloudsStub")
+        if let image = SVGKImage(data: displayData.iconImageData).uiImage {
+            let iconSize = CGSize(width: Constants.iconSquareSize, height: Constants.iconSquareSize)
+            imageView.image = image.resized(to: iconSize)
         }
         temperatureLabel.text = displayData.temperature
         timeLabel.text = displayData.time
+    }
+
+    private func setupCellStyle() {
+        backgroundColor = .clear
     }
 
     private func setupSubviews() {
         contentView.addSubviews([backView, imageView, temperatureLabel, timeLabel])
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.topPadding),
 
             temperatureLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            temperatureLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor),
+            temperatureLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: Constants.inset),
 
             backView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             backView.topAnchor.constraint(equalTo: contentView.topAnchor),
             backView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            backView.bottomAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: 5),
+            backView.bottomAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: Constants.inset),
 
             timeLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            timeLabel.topAnchor.constraint(equalTo: backView.bottomAnchor, constant: 5)
+            timeLabel.topAnchor.constraint(equalTo: backView.bottomAnchor, constant: Constants.inset)
         ])
     }
 }

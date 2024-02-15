@@ -10,7 +10,8 @@ import UIKit
 enum HomeAssembly {
     static func makeModule() -> UIViewController {
         let homeViewController = HomeViewController()
-        let presenter = HomeViewPresenter(view: homeViewController, networkService: NetworkService())
+        let networkService = NetworkService()
+        let presenter = HomeViewPresenter(view: homeViewController, networkService: networkService)
         homeViewController.presenter = presenter
         return homeViewController.wrappedInNavigationController()
     }

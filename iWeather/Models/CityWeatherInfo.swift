@@ -23,10 +23,7 @@ struct CityWeatherInfo: Codable {
         let temperatures = firstForecast.hours.map { $0.temperature }
         guard let minTemperature = temperatures.min(),
               let maxTemperature = temperatures.max()
-        else {
-            return ""
-        }
-
+        else { return "" }
         return "\(minTemperature)".addDegreeSymbol() + "/" + "\(maxTemperature)".addDegreeSymbol()
     }
 }

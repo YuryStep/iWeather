@@ -31,15 +31,8 @@ final class CurrentCityCell: UICollectionViewCell {
         static let swipeDownIconHeigh: CGFloat = 10
         static let swipeDownImageName = "iconChevronDown"
         static let swipeLabelText = "Swipe down for details"
+        static let dateFormat: String = "dd MMM EEE"
     }
-
-    //  TODO: Remove when Networking will be done
-    static var displayDataStub = DisplayData(
-        cityName: "Hyderabad",
-        temperatureRange: "20°C/29°C",
-        currentTemperature: "24°C",
-        weatherCondition: "Clear sky"
-    )
 
     private lazy var cityLabel = UILabel(.poppinsSemiBold, size: Constants.cityNameSize)
     private lazy var temperatureLabel = UILabel(.poppinsSemiBold, size: Constants.temperatureInfoSize)
@@ -73,7 +66,6 @@ final class CurrentCityCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        translatesAutoresizingMaskIntoConstraints = false
         makeBottomCornersRounded(radius: Constants.bottomCornersRadius)
         setupSubviews()
     }
@@ -94,7 +86,7 @@ final class CurrentCityCell: UICollectionViewCell {
 
     private func getCurrentDateString() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM EEE"
+        dateFormatter.dateFormat = Constants.dateFormat
         let currentDate = Date()
         let formattedDate = dateFormatter.string(from: currentDate)
         return formattedDate

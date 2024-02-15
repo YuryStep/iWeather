@@ -27,10 +27,10 @@
 		EF51A2782B7627CC001EE4CD /* NSCollectionLayoutSize+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF51A2772B7627CC001EE4CD /* NSCollectionLayoutSize+Extensions.swift */; };
 		EF51A27F2B7631C9001EE4CD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF51A27E2B7631C9001EE4CD /* NetworkError.swift */; };
 		EF51A2812B765310001EE4CD /* CityWeatherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF51A2802B765310001EE4CD /* CityWeatherInfo.swift */; };
+		EF57D9EA2B7EBA5A00AFC78F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = EF57D9E92B7EBA5A00AFC78F /* .swiftlint.yml */; };
 		EF5D60802B73817B0071E424 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D607F2B73817B0071E424 /* AppDelegate.swift */; };
 		EF5D60822B73817C0071E424 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D60812B73817C0071E424 /* SceneDelegate.swift */; };
 		EF5D608C2B73817E0071E424 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF5D608A2B73817E0071E424 /* LaunchScreen.storyboard */; };
-		EF5D60972B7389260071E424 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = EF5D60962B7389260071E424 /* .swiftlint.yml */; };
 		EF5D60992B73898B0071E424 /* .swiftformat in Resources */ = {isa = PBXBuildFile; fileRef = EF5D60982B73898B0071E424 /* .swiftformat */; };
 		EF5D609B2B738C3D0071E424 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF5D609A2B738C3D0071E424 /* Colors.xcassets */; };
 		EF5D609D2B7394DE0071E424 /* IWeatherAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5D609C2B7394DE0071E424 /* IWeatherAssembly.swift */; };
@@ -49,6 +49,8 @@
 		EFDF593D2B76A18700858299 /* HomeViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDF593C2B76A18700858299 /* HomeViewPresenter.swift */; };
 		EFEB1BE82B7BC48C00DD2D9D /* CurrentCityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB1BE72B7BC48C00DD2D9D /* CurrentCityCell.swift */; };
 		EFEB1BEA2B7D403800DD2D9D /* HomeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB1BE92B7D403800DD2D9D /* HomeCollectionView.swift */; };
+		EFF0C3402B7F4084006AB2D0 /* SVGKit in Frameworks */ = {isa = PBXBuildFile; productRef = EFF0C33F2B7F4084006AB2D0 /* SVGKit */; };
+		EFF0C3422B7F4084006AB2D0 /* SVGKitSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EFF0C3412B7F4084006AB2D0 /* SVGKitSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,12 +73,12 @@
 		EF51A2772B7627CC001EE4CD /* NSCollectionLayoutSize+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCollectionLayoutSize+Extensions.swift"; sourceTree = "<group>"; };
 		EF51A27E2B7631C9001EE4CD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		EF51A2802B765310001EE4CD /* CityWeatherInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherInfo.swift; sourceTree = "<group>"; };
+		EF57D9E92B7EBA5A00AFC78F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		EF5D607C2B73817B0071E424 /* iWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF5D607F2B73817B0071E424 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF5D60812B73817C0071E424 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EF5D608B2B73817E0071E424 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF5D608D2B73817E0071E424 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EF5D60962B7389260071E424 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		EF5D60982B73898B0071E424 /* .swiftformat */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftformat; sourceTree = "<group>"; };
 		EF5D609A2B738C3D0071E424 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		EF5D609C2B7394DE0071E424 /* IWeatherAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWeatherAssembly.swift; sourceTree = "<group>"; };
@@ -103,6 +105,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFF0C3422B7F4084006AB2D0 /* SVGKitSwift in Frameworks */,
+				EFF0C3402B7F4084006AB2D0 /* SVGKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +162,8 @@
 			isa = PBXGroup;
 			children = (
 				EF5D607E2B73817B0071E424 /* iWeather */,
+				EF5D60982B73898B0071E424 /* .swiftformat */,
+				EF57D9E92B7EBA5A00AFC78F /* .swiftlint.yml */,
 				EF5D607D2B73817B0071E424 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -180,8 +186,6 @@
 				EF08ABF52B73E543000DD462 /* Helpers */,
 				EF5D60BD2B73C29B0071E424 /* Extensions */,
 				EF5D60B42B739D2E0071E424 /* Supporting Files */,
-				EF5D60962B7389260071E424 /* .swiftlint.yml */,
-				EF5D60982B73898B0071E424 /* .swiftformat */,
 			);
 			path = iWeather;
 			sourceTree = "<group>";
@@ -304,6 +308,10 @@
 			dependencies = (
 			);
 			name = iWeather;
+			packageProductDependencies = (
+				EFF0C33F2B7F4084006AB2D0 /* SVGKit */,
+				EFF0C3412B7F4084006AB2D0 /* SVGKitSwift */,
+			);
 			productName = iWeather;
 			productReference = EF5D607C2B73817B0071E424 /* iWeather.app */;
 			productType = "com.apple.product-type.application";
@@ -332,6 +340,9 @@
 				Base,
 			);
 			mainGroup = EF5D60732B73817B0071E424;
+			packageReferences = (
+				EFF0C33E2B7F4084006AB2D0 /* XCRemoteSwiftPackageReference "SVGKit" */,
+			);
 			productRefGroup = EF5D607D2B73817B0071E424 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -346,11 +357,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF57D9EA2B7EBA5A00AFC78F /* .swiftlint.yml in Resources */,
 				EF5D609B2B738C3D0071E424 /* Colors.xcassets in Resources */,
 				EF1B45602B73D07200AB519B /* Poppins-SemiBold.ttf in Resources */,
 				EF1B45632B73D0C800AB519B /* Roboto-Regular.ttf in Resources */,
 				EF5D60992B73898B0071E424 /* .swiftformat in Resources */,
-				EF5D60972B7389260071E424 /* .swiftlint.yml in Resources */,
 				EF1B455F2B73D07200AB519B /* Poppins-Regular.ttf in Resources */,
 				EF08AC052B74DDF4000DD462 /* Poppins-Medium.ttf in Resources */,
 				EF5D608C2B73817E0071E424 /* LaunchScreen.storyboard in Resources */,
@@ -561,6 +572,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FC7PVA7NK7;
@@ -593,6 +605,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FC7PVA7NK7;
@@ -642,6 +655,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EFF0C33E2B7F4084006AB2D0 /* XCRemoteSwiftPackageReference "SVGKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SVGKit/SVGKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EFF0C33F2B7F4084006AB2D0 /* SVGKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EFF0C33E2B7F4084006AB2D0 /* XCRemoteSwiftPackageReference "SVGKit" */;
+			productName = SVGKit;
+		};
+		EFF0C3412B7F4084006AB2D0 /* SVGKitSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EFF0C33E2B7F4084006AB2D0 /* XCRemoteSwiftPackageReference "SVGKit" */;
+			productName = SVGKitSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EF5D60742B73817B0071E424 /* Project object */;
 }

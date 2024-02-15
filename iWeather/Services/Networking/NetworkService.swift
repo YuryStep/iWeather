@@ -7,7 +7,11 @@
 
 import Foundation
 
-final class NetworkService {
+protocol AppNetworkService {
+    func downloadWeatherInfo(for: [PresetCity], completion: @escaping (Result<[CityWeatherInfo], NetworkError>) -> Void)
+}
+
+final class NetworkService: AppNetworkService {
     private enum Constants {
         static let apiKey = "8a080b6e-081a-467d-9e63-7d6972fce56f"
         static let searchEndpoint = "https://api.weather.yandex.ru/v2/forecast?"

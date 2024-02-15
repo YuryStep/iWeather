@@ -1,3 +1,8 @@
+included:
+- iWeather
+
+excluded:
+- Pods
 
 disabled_rules:
 - todo
@@ -5,4 +10,3 @@ disabled_rules:
 - nesting
 
 line_length: 170
-

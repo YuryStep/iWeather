@@ -5,22 +5,20 @@
 //  Created by Юрий Степанчук on 14.02.2024.
 //
 
+import UIKit
+
 protocol HomeCollectionViewDelegate: AnyObject, UICollectionViewDelegate {
     func getCityCellDisplayData() -> [HomeCollectionView.Item]
     func getTimelineCellDisplayData() -> [HomeCollectionView.Item]
     func getCurrentCityCellDisplayData() -> [HomeCollectionView.Item]
 }
 
-import UIKit
-
 final class HomeCollectionView: UICollectionView {
     private enum Constants {
         static let timelineHeaderKind = "timelineHeaderKind"
-
         static let cityItemPadding: CGFloat = 25
         static let cityItemSpacing: CGFloat = 25
         static let cityItemAspectRatio = 0.8
-
         static let timelineItemPadding: CGFloat = 25
         static let timelineItemSpacing: CGFloat = 25
         static let timelineItemAspectRatio = 0.75
@@ -43,11 +41,11 @@ final class HomeCollectionView: UICollectionView {
     private typealias TimelineHeaderRegistration = UICollectionView.SupplementaryRegistration<TimelineHeaderView>
 
     private var homeDataSource: DataSource!
-    private var homeCollectionViewDelegate: HomeCollectionViewDelegate
+    private var homeCollectionViewDelegate: HomeCollectionViewDelegate!
 
     init(frame: CGRect, delegate: HomeCollectionViewDelegate) {
-        homeCollectionViewDelegate = delegate
         super.init(frame: frame, collectionViewLayout: UICollectionViewLayout())
+        homeCollectionViewDelegate = delegate
         setupCollection()
         collectionViewLayout = createLayout()
         configureDataSource()

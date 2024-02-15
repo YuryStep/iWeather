@@ -18,6 +18,7 @@ final class CityCell: UICollectionViewCell {
     private enum Constants {
         static let padding: CGFloat = 20
         static let labelTextSize: CGFloat = 18
+        static let cornerRadius: CGFloat = 22
     }
 
     private lazy var label = UILabel(.poppinsSemiBold, size: Constants.labelTextSize)
@@ -37,9 +38,7 @@ final class CityCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupSubviews()
-        backgroundColor = .clear
-        contentView.layer.cornerRadius = 22.0
-        contentView.layer.masksToBounds = true
+        setupCellStyle()
     }
 
     func configure(with displayData: DisplayData) {
@@ -47,6 +46,12 @@ final class CityCell: UICollectionViewCell {
             imageView.image = image
             label.text = "\(displayData.cityName) \(displayData.currentTemperature)"
         }
+    }
+
+    private func setupCellStyle() {
+        backgroundColor = .clear
+        contentView.layer.cornerRadius = Constants.cornerRadius
+        contentView.layer.masksToBounds = true
     }
 
     private func setupSubviews() {

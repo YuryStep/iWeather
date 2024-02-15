@@ -15,7 +15,7 @@ protocol HomeViewOutput {
 }
 
 protocol HomeViewInput {
-    func updateHomeView()
+    func updateView()
 }
 
 final class HomeViewController: UIViewController {
@@ -101,7 +101,7 @@ extension HomeViewController: UICollectionViewDelegate {
 }
 
 extension HomeViewController: HomeViewInput {
-    func updateHomeView() {
+    func updateView() {
         collectionView.applySnapshot(animatingDifferences: true)
         scrollHourTimelineToNowItem()
     }
