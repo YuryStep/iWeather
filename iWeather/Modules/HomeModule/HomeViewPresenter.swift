@@ -11,20 +11,15 @@ class HomeViewPresenter {
     private struct State {
         static var stubTimeLineItems = {
             var stubTimeLineItems = [TimelineCell.DisplayData]()
-            for _ in 0 ..< 24 {
-                stubTimeLineItems.append(TimelineCell.DisplayData())
-            }
+            for _ in 0 ..< 24 { stubTimeLineItems.append(TimelineCell.DisplayData()) }
             return stubTimeLineItems
         }()
 
         static var stubCityCellItems = [
-            CityCell.DisplayData(imageName: "cityImageStub",
-                                 cityName: "Москва",
-                                 currentTemperature: "-5".addDegreeSymbol()),
-            CityCell.DisplayData(imageName: "cityImageStub",
-                                 cityName: "Казань",
-                                 currentTemperature: "-17".addDegreeSymbol())
+            CityCell.DisplayData(cityName: "Москва", currentTemperature: "-5".addDegreeSymbol()),
+            CityCell.DisplayData(cityName: "Казань", currentTemperature: "-17".addDegreeSymbol())
         ]
+
         var currentCity: CityWeatherInfo?
         var citiesWeatherInfo = [CityWeatherInfo]()
     }
@@ -36,10 +31,10 @@ class HomeViewPresenter {
     init(view: HomeViewController?, networkService: NetworkService) {
         self.view = view
         self.networkService = networkService
-        downloadWeatherInfoForPresetCitities()
+        downloadWeatherInfoForPresetCities()
     }
 
-    private func downloadWeatherInfoForPresetCitities() {
+    private func downloadWeatherInfoForPresetCities() {
         networkService.downloadWeatherInfo(for: PresetCity.allCases) { result in
             switch result {
             case let .success(citiesWeatherInfo):
@@ -53,25 +48,25 @@ class HomeViewPresenter {
 }
 
 extension HomeViewPresenter: HomeViewOutput {
-    func didTapOnCell(at indexPath: IndexPath) {
-        state.currentCity = state.citiesWeatherInfo[indexPath.row]
-        view?.updateHomeView()
-    }
-
-    func getCurrentCityCellDisplayData() -> [HomeViewController.Item] {
-        return getCurrentCityCellDisplayData().toCurrentCityItems()
-    }
-
-    func getCityCellDisplayData() -> [HomeViewController.Item] {
+    func getCityCellDisplayData() -> [HomeCollectionView.Item] {
         guard !state.citiesWeatherInfo.isEmpty else {
             return State.stubCityCellItems.toCityItems()
         }
         return getCityCellItems().toCityItems()
     }
 
-    func getTimelineCellDisplayData() -> [HomeViewController.Item] {
+    func getTimelineCellDisplayData() -> [HomeCollectionView.Item] {
         guard !state.citiesWeatherInfo.isEmpty else { return State.stubTimeLineItems.toTimelineItems() }
         return getTimeLineItems().toTimelineItems()
+    }
+
+    func getCurrentCityCellDisplayData() -> [HomeCollectionView.Item] {
+        return getCurrentCityCellDisplayData().toCurrentCityItems()
+    }
+
+    func didTapOnCell(at indexPath: IndexPath) {
+        state.currentCity = state.citiesWeatherInfo[indexPath.row]
+        view?.updateHomeView()
     }
 
     private func getCurrentCityCellDisplayData() -> [CurrentCityCell.DisplayData] {

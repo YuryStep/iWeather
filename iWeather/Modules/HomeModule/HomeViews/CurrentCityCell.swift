@@ -18,21 +18,17 @@ final class CurrentCityCell: UICollectionViewCell {
 
     private enum Constants {
         static let bottomCornersRadius: CGFloat = 30
-
         static let padding: CGFloat = 25
         static let leftLabelSpacing: CGFloat = 15
         static let rightLabelSpacing: CGFloat = 5
-
         static let cityNameSize: CGFloat = 28
         static let temperatureInfoSize: CGFloat = 36
-        static let dateAndRangeSize: CGFloat = 12.91
-        static let weatherConditionSize: CGFloat = 21.33
+        static let dateAndRangeSize: CGFloat = 13
+        static let weatherConditionSize: CGFloat = 21
         static let swipeLabelSize: CGFloat = 12
         static let swipeDownImageSize: CGFloat = 22
-
         static let swipeDownIconWidth: CGFloat = 20
         static let swipeDownIconHeigh: CGFloat = 10
-
         static let swipeDownImageName = "iconChevronDown"
         static let swipeLabelText = "Swipe down for details"
     }
@@ -77,7 +73,7 @@ final class CurrentCityCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        translatesAutoresizingMaskIntoConstraints = false
+//        translatesAutoresizingMaskIntoConstraints = false
         makeBottomCornersRounded(radius: Constants.bottomCornersRadius)
         setupSubviews()
     }

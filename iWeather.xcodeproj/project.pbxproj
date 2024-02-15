@@ -48,6 +48,7 @@
 		EF7752F62B7A4A7F009E792C /* PresetCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7752F52B7A4A7F009E792C /* PresetCity.swift */; };
 		EFDF593D2B76A18700858299 /* HomeViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDF593C2B76A18700858299 /* HomeViewPresenter.swift */; };
 		EFEB1BE82B7BC48C00DD2D9D /* CurrentCityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB1BE72B7BC48C00DD2D9D /* CurrentCityCell.swift */; };
+		EFEB1BEA2B7D403800DD2D9D /* HomeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB1BE92B7D403800DD2D9D /* HomeCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		EF7752F52B7A4A7F009E792C /* PresetCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetCity.swift; sourceTree = "<group>"; };
 		EFDF593C2B76A18700858299 /* HomeViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewPresenter.swift; sourceTree = "<group>"; };
 		EFEB1BE72B7BC48C00DD2D9D /* CurrentCityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentCityCell.swift; sourceTree = "<group>"; };
+		EFEB1BE92B7D403800DD2D9D /* HomeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,6 +278,7 @@
 		EFE1D4CD2B76A1F4003A17B7 /* HomeViews */ = {
 			isa = PBXGroup;
 			children = (
+				EFEB1BE92B7D403800DD2D9D /* HomeCollectionView.swift */,
 				EFEB1BE72B7BC48C00DD2D9D /* CurrentCityCell.swift */,
 				EF08ABFE2B74BD59000DD462 /* CityCell.swift */,
 				EF08AC002B74BFC5000DD462 /* TimelineCell.swift */,
@@ -398,6 +401,7 @@
 				EF5D60A42B7399010071E424 /* LocationAssembly.swift in Sources */,
 				EF7752F22B775338009E792C /* String+Extensions.swift in Sources */,
 				EF5D60A12B7397C10071E424 /* SearchViewController.swift in Sources */,
+				EFEB1BEA2B7D403800DD2D9D /* HomeCollectionView.swift in Sources */,
 				EFDF593D2B76A18700858299 /* HomeViewPresenter.swift in Sources */,
 				EF5D60BC2B73C2880071E424 /* UIView+Extensions.swift in Sources */,
 				EF08ABF42B73E53D000DD462 /* AppFonts.swift in Sources */,
