@@ -56,10 +56,19 @@ final class MainTabBarController: UITabBarController {
     }
 
     private func setTabBarAppearance() {
+        turnOffTabBarTransparency()
         tabBar.itemPositioning = .centered
         tabBar.tintColor = .appAccent
         tabBar.backgroundColor = .appLightBackground
         tabBar.unselectedItemTintColor = .appInactiveTabBarItem
         tabBar.layer.cornerRadius = Constants.cornerRadius
+    }
+
+    private func turnOffTabBarTransparency() {
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.configureWithOpaqueBackground()
+        tabBarAppearance.backgroundColor = .clear
+        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+        UITabBar.appearance().standardAppearance = tabBarAppearance
     }
 }

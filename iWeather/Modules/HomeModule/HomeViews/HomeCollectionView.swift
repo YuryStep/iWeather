@@ -47,7 +47,7 @@ final class HomeCollectionView: UICollectionView {
         super.init(frame: frame, collectionViewLayout: UICollectionViewLayout())
         homeCollectionViewDelegate = delegate
         setupCollection()
-        collectionViewLayout = createLayout()
+        setLayout()
         configureDataSource()
     }
 
@@ -63,7 +63,6 @@ final class HomeCollectionView: UICollectionView {
         delegate = homeCollectionViewDelegate
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .clear
-        isScrollEnabled = false
         contentInsetAdjustmentBehavior = .never
     }
 
@@ -103,7 +102,7 @@ final class HomeCollectionView: UICollectionView {
         }
     }
 
-    private func createLayout() -> UICollectionViewCompositionalLayout {
+    private func setLayout() {
         let sectionProvider = { [weak self] (sectionIndex: Int, _: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
             guard let self, let section = Section(rawValue: sectionIndex) else {
                 assertionFailure("Failed to initialize Section in SectionProvider")
@@ -117,7 +116,7 @@ final class HomeCollectionView: UICollectionView {
         }
 
         let layout = UICollectionViewCompositionalLayout(sectionProvider: sectionProvider)
-        return layout
+        collectionViewLayout = layout
     }
 
     private func createCurrentCitySectionLayout() -> NSCollectionLayoutSection {
@@ -143,7 +142,7 @@ final class HomeCollectionView: UICollectionView {
                                                         leading: Constants.cityItemPadding,
                                                         bottom: 10,
                                                         trailing: Constants.cityItemPadding)
-        section.orthogonalScrollingBehavior = .continuous
+        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
         return section
     }
 

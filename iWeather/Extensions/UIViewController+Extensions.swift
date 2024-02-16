@@ -9,6 +9,9 @@ import UIKit
 
 extension UIViewController {
     func wrappedInNavigationController() -> UINavigationController {
-        return UINavigationController(rootViewController: self)
+        let navigationController = UINavigationController(rootViewController: self)
+        navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController.navigationBar.shadowImage = UIImage()
+        return navigationController
     }
 }

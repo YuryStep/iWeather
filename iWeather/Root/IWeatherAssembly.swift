@@ -21,13 +21,6 @@ enum IWeatherAssembly {
     private static func makeTabBarController(with viewControllers: [UIViewController]) -> UITabBarController {
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = viewControllers
-        turnOffTabBarTransparency()
         return tabBarController
-    }
-
-    private static func turnOffTabBarTransparency() {
-        let tabBarAppearance = UITabBarAppearance()
-        tabBarAppearance.configureWithOpaqueBackground()
-        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
     }
 }
