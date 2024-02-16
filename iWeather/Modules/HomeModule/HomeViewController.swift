@@ -55,10 +55,20 @@ final class HomeViewController: UIViewController {
         return collectionView
     }()
 
+    lazy var loadingIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = .appAccent
+        activityIndicator.style = .large
+        return activityIndicator
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
         setupView()
+        showLoadingIndicator()
     }
 
     private func setupNavigationBar() {
@@ -70,13 +80,28 @@ final class HomeViewController: UIViewController {
 
     private func setupView() {
         view.backgroundColor = .appBackground
-        view.addSubview(collectionView)
+        view.addSubviews([collectionView, loadingIndicator])
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
+            loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+    }
+
+    private func showLoadingIndicator() {
+        collectionView.isHidden = true
+        loadingIndicator.isHidden = false
+        loadingIndicator.startAnimating()
+    }
+
+    private func hideLoadingIndicator() {
+        loadingIndicator.stopAnimating()
+        loadingIndicator.isHidden = true
+        collectionView.isHidden = false
     }
 
     @objc private func profileButtonTapped() {
@@ -103,10 +128,11 @@ extension HomeViewController: UICollectionViewDelegate {
 extension HomeViewController: HomeViewInput {
     func updateView() {
         collectionView.applySnapshot(animatingDifferences: true)
-        scrollHourTimelineToNowItem()
+        scrollHourTimelineToCurrentTime()
+        hideLoadingIndicator()
     }
 
-    private func scrollHourTimelineToNowItem() {
+    private func scrollHourTimelineToCurrentTime() {
         let itemNumber = currentHour()
         let sectionNumber = HomeCollectionView.Section.timeline.rawValue
         let indexPath = IndexPath(item: itemNumber, section: sectionNumber)
