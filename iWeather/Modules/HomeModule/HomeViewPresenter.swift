@@ -19,7 +19,7 @@ class HomeViewPresenter {
 
     init(view: HomeViewController?, networkService: AppNetworkService) {
         self.view = view
-        self.state = State()
+        state = State()
         self.networkService = networkService
         downloadWeatherInfoForPresetCities()
     }
@@ -59,7 +59,8 @@ extension HomeViewPresenter: HomeViewOutput {
 
     func getCurrentCityCellDisplayData() -> [HomeCollectionView.Item] {
         guard let currentCity = state.currentCity else { return Stub.stubCurrentCityCellDisplayData.toCurrentCityItems() }
-        return [CurrentCityCell.DisplayData(cityWeatherInfo: currentCity)].toCurrentCityItems()    }
+        return [CurrentCityCell.DisplayData(cityWeatherInfo: currentCity)].toCurrentCityItems()
+    }
 
     func didTapOnCell(at indexPath: IndexPath) {
         state.currentCity = state.citiesWeatherInfo[indexPath.row]
@@ -67,7 +68,7 @@ extension HomeViewPresenter: HomeViewOutput {
     }
 }
 
-fileprivate extension CurrentCityCell.DisplayData {
+private extension CurrentCityCell.DisplayData {
     init(cityWeatherInfo: CityWeatherInfo) {
         cityName = cityWeatherInfo.geoObject.locality.name
         currentTemperature = String(cityWeatherInfo.fact.temp!).addDegreeSymbol()
@@ -76,14 +77,14 @@ fileprivate extension CurrentCityCell.DisplayData {
     }
 }
 
-fileprivate extension CityCell.DisplayData {
+private extension CityCell.DisplayData {
     init(whetherModel: CityWeatherInfo) {
         cityName = whetherModel.geoObject.locality.name
         currentTemperature = String(whetherModel.fact.temp!).addDegreeSymbol()
     }
 }
 
-fileprivate extension TimelineCell.DisplayData {
+private extension TimelineCell.DisplayData {
     init(hourWeatherInfo: HourWeatherInfo) {
         iconImageData = hourWeatherInfo.iconImageData
         temperature = String(hourWeatherInfo.temperature).addDegreeSymbol()
@@ -91,16 +92,19 @@ fileprivate extension TimelineCell.DisplayData {
     }
 }
 
-private struct Stub {
+private enum Stub {
     static var stubCurrentCityCellDisplayData = [CurrentCityCell.DisplayData(
         cityName: "Hyderabad",
         temperatureRange: "20°C/29°C",
         currentTemperature: "24°C",
-        weatherCondition: "Clear sky")]
+        weatherCondition: "Clear sky"
+    )]
 
     static var stubTimeLineCellDisplayData = {
         var stubTimeLineItems = [TimelineCell.DisplayData]()
-        for _ in 0 ..< 24 { stubTimeLineItems.append(TimelineCell.DisplayData()) }
+        for _ in 0 ..< 24 {
+            stubTimeLineItems.append(TimelineCell.DisplayData())
+        }
         return stubTimeLineItems
     }()
 
