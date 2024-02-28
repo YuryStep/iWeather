@@ -14,7 +14,7 @@ protocol HomeViewOutput {
     func didTapOnCell(at indexPath: IndexPath)
 }
 
-protocol HomeViewInput {
+protocol HomeViewInput: AnyObject {
     func updateView()
 }
 

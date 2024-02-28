@@ -13,7 +13,7 @@ class HomeViewPresenter {
         var citiesWeatherInfo = [CityWeatherInfo]()
     }
 
-    private weak var view: HomeViewController?
+    private weak var view: HomeViewInput?
     private var networkService: AppNetworkService
     private var state: State
 
@@ -25,7 +25,7 @@ class HomeViewPresenter {
     }
 
     private func downloadWeatherInfoForPresetCities() {
-        networkService.downloadWeatherInfo(for: PresetCity.allCases) { [weak self]  result in
+        networkService.downloadWeatherInfo(for: PresetCity.allCases) { [weak self] result in
             guard let self else { return }
             switch result {
             case let .success(citiesWeatherInfo):
