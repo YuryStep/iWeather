@@ -118,13 +118,6 @@ final class HomeViewController: UIViewController {
     }
 }
 
-extension HomeViewController: UICollectionViewDelegate {
-    func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard indexPath.section == HomeCollectionView.Section.cities.rawValue else { return }
-        presenter.didTapOnCell(at: indexPath)
-    }
-}
-
 extension HomeViewController: HomeViewInput {
     func updateView() {
         collectionView.applySnapshot(animatingDifferences: true)
@@ -148,6 +141,11 @@ extension HomeViewController: HomeViewInput {
 }
 
 extension HomeViewController: HomeCollectionViewDelegate {
+    func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard indexPath.section == HomeCollectionView.Section.cities.rawValue else { return }
+        presenter.didTapOnCell(at: indexPath)
+    }
+
     func getCityCellDisplayData() -> [HomeCollectionView.Item] {
         presenter.getCityCellDisplayData()
     }
